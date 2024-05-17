@@ -10,7 +10,8 @@
     "prettier": "prettier \"**/*.+(json|ts|tsx)\"",
     "format:check": "npm run prettier -- --check",
     "format:fix": "npm run prettier -- --write",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
