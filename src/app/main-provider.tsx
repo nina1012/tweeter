@@ -1,9 +1,8 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Heart, LucideRefreshCcw } from 'lucide-react';
+import { LucideRefreshCcw } from 'lucide-react';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
@@ -16,9 +15,12 @@ const ErrorFallback = () => {
       role="alert"
     >
       <h2 className="text-lg font-semibold">Ooops, something went wrong 😕 </h2>
-      <Button onClick={() => window.location.assign(window.location.origin)}>
+      <Button
+        className="mt-2"
+        onClick={() => window.location.assign(window.location.origin)}
+      >
         <LucideRefreshCcw className="pr-2" />
-        <Heart /> Refresh
+        Refresh
       </Button>
     </div>
   );
@@ -34,7 +36,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
           {import.meta.env.DEV && <ReactQueryDevtools />}
-          <Router>{children}</Router>
+          {children}
         </QueryClientProvider>
       </ErrorBoundary>
     </Suspense>
