@@ -1,35 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createBrowserRouter } from 'react-router-dom';
 
 export const createRouter = () =>
   createBrowserRouter([
+    // these pages are available to everyone
     {
       path: '/',
-      element: <div>app layout</div>,
-
-      children: [
-        // main pages
-        {
-          path: 'home',
-          element: <p>home page</p>,
-        },
-        {
-          path: 'explore',
-          element: <p>explore page</p>,
-        },
-        {
-          path: 'bookmarks',
-          element: <p>bookmarks page</p>,
-        },
-        // user pages
-        {
-          path: 'profile',
-          element: <p>profile page</p>,
-        },
-        {
-          path: 'settings',
-          element: <p>settings page</p>,
-        },
-      ],
+      lazy: async () => {
+        const { HomeRoute } = await import('./home');
+        return { Component: HomeRoute };
+      },
+    },
+    {
+      path: '*',
+      lazy: async () => {
+        const { NotFoundRoute } = await import('./not-found');
+        return { Component: NotFoundRoute };
+      },
     },
   ]);
