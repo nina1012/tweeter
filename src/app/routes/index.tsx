@@ -18,6 +18,13 @@ export const createRouter = () =>
       },
     },
     {
+      path: '/auth/register',
+      lazy: async () => {
+        const { RegisterRoute } = await import('./auth/register');
+        return { Component: RegisterRoute };
+      },
+    },
+    {
       path: '*',
       lazy: async () => {
         const { NotFoundRoute } = await import('./not-found');
