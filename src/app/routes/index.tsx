@@ -11,6 +11,13 @@ export const createRouter = () =>
       },
     },
     {
+      path: '/auth/login',
+      lazy: async () => {
+        const { LoginRoute } = await import('./auth/login');
+        return { Component: LoginRoute };
+      },
+    },
+    {
       path: '*',
       lazy: async () => {
         const { NotFoundRoute } = await import('./not-found');
