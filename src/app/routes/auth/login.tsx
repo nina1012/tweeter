@@ -17,13 +17,12 @@ export const LoginRoute = () => {
           </Button>
         </form>
         <hr className="my-4" />
-        <Button
-          type="button"
-          variant="link"
-          className="mx-auto w-2/3 bg-green-500 py-6 text-white !no-underline"
-        >
-          <Link to="/auth/register">Sign up</Link>
-        </Button>
+        <div className=" text-center text-sm text-gray-600">
+          Don&apos;t have an account yet?{' '}
+          <Link className="text-primary underline" to="/auth/register">
+            Sign up
+          </Link>
+        </div>
       </div>
     </AuthLayout>
   );

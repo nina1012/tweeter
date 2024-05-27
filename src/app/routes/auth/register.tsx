@@ -13,7 +13,8 @@ export const RegisterRoute = () => {
         <Input type="password" placeholder="Confirm" />
         <Button type="submit">Sign up</Button>
       </form>
-      <div className="my-6 text-center text-sm text-gray-600">
+      <hr className="my-4" />
+      <div className=" text-center text-sm text-gray-600">
         Already have an account?{' '}
         <Link className="text-primary underline" to="/auth/login">
           Log in
