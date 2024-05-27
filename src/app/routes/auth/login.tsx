@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { AuthLayout } from '@/components/layouts/auth-layout';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/input/input';
 
 export const LoginRoute = () => {
   return (
