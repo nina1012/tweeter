@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { Button } from '@/components/ui/button';
+import { Notifications } from '@/components/ui/notifications/notifications';
 import { Spinner } from '@/components/ui/spinner';
 import { queryClient } from '@/lib/react-query';
 
@@ -36,6 +37,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
           {import.meta.env.DEV && <ReactQueryDevtools />}
+          <Notifications />
           {children}
         </QueryClientProvider>
       </ErrorBoundary>
