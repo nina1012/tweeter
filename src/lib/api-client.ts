@@ -9,14 +9,12 @@ function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   return config;
 }
 
-export const api = Axios.create({
-  baseURL: env.API_URL,
+export const apiClient = Axios.create({
+  baseURL: env.BASE_API_URL,
 });
 
-console.log(api);
-
-api.interceptors.request.use(authRequestInterceptor);
-api.interceptors.response.use(
+apiClient.interceptors.request.use(authRequestInterceptor);
+apiClient.interceptors.response.use(
   (response) => {
     return response.data;
   },
