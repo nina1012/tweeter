@@ -1,52 +1,56 @@
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input/input';
+import { Form } from '@/components/ui/form/form';
+import { Input } from '@/components/ui/form/input';
+import { registerInputSchema } from '@/lib/auth';
 
 export type RegisterFormProps = {
-  onSuccess: () => unknown;
+  onSuccess: () => void;
 };
 
 export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
-  const { handleSubmit, register } = useForm();
-
   //   const { addNotification } = useNotifications();
 
   return (
     <div>
-      <form
-        className="flex min-h-48 flex-col gap-4  *:py-6"
-        onSubmit={handleSubmit(onSuccess)}
+      <Form
+        onSubmit={(values) => {
+          console.log(values);
+          onSuccess;
+          //   registering.mutate(values);
+        }}
+        schema={registerInputSchema}
+        options={{
+          shouldUnregister: true,
+        }}
       >
-        <Input
-          type="email"
-          id="email"
-          autoComplete="true"
-          //   error={formState.errors['email']}
-          {...register('email', {
-            required: true,
-          })}
-        />
-        <Input
-          type="password"
-          id="password"
-          placeholder="Password"
-          {...register('password', {
-            required: true,
-          })}
-          //   error={formState.errors['password']}
-        />
-        <Input
-          type="password"
-          placeholder="confirm"
-          //   error={formState.errors['password']}
-          {...register('password', {
-            required: true,
-          })}
-        />
-        <Button type="submit">Sign up</Button>
-      </form>
+        {({ register, formState }) => (
+          <>
+            <Input
+              type="email"
+              placeholder="Email Address"
+              error={formState.errors['email']}
+              registration={register('email')}
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              error={formState.errors['password']}
+              registration={register('password')}
+            />
+            <Input
+              type="password"
+              placeholder="Confirm password"
+              error={formState.errors['password']}
+              registration={register('password')}
+            />
+            <Button type="submit" className="w-full">
+              Sign up
+            </Button>
+          </>
+        )}
+      </Form>
       <hr className="my-4" />
       <div className=" text-center text-sm text-gray-600">
         Already have an account?{' '}
