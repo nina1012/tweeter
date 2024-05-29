@@ -1,45 +1,40 @@
-import { AuthResponse, AuthError } from '@supabase/supabase-js';
+import { AuthError, AuthResponse } from '@supabase/supabase-js';
 import { useMutation } from '@tanstack/react-query';
 
 import { queryClient } from '@/lib/react-query';
 import { supabase } from '@/lib/supabase';
 
-type UseRegisterOptions = {
-  onSuccess?: (user: AuthResponse['data']) => void;
+type UseLoginOptions = {
+  onSuccess?: (data: AuthResponse['data']) => void;
   onError?: (error: AuthError['message']) => void;
 };
-
-export const registerFn = async ({
+export const loginFn = async ({
   email,
   password,
 }: {
   email: string;
   password: string;
 }): Promise<AuthResponse['data']> => {
-  const { data, error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
   });
+
   if (error) {
     throw error;
   }
   return data;
 };
 
-export const useRegister = ({
-  onSuccess,
-  onError,
-}: UseRegisterOptions = {}) => {
-  const { mutate: registering, isPending } = useMutation({
-    mutationFn: registerFn,
+export const useLogin = ({ onSuccess, onError }: UseLoginOptions = {}) => {
+  const { mutate: login, isPending } = useMutation({
+    mutationFn: loginFn,
     mutationKey: ['auth-user'],
     onSuccess: (data) => {
-      queryClient.setQueryData(['auth-user'], {
-        ...data,
-      });
+      queryClient.setQueryData(['auth-user'], { ...data });
       return onSuccess?.(data);
     },
     onError: (error) => onError?.(error?.message),
   });
-  return { registering, isPending };
+  return { login, isPending };
 };

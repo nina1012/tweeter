@@ -4,22 +4,22 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form/form';
 import { Input } from '@/components/ui/form/input';
 import { useNotifications } from '@/components/ui/notifications';
-import { registerInputSchema } from '@/lib/auth';
+import { loginInputSchema } from '@/lib/auth';
 
-import { useRegister } from '../api/register';
+import { useLogin } from '../api/login';
 
-export type RegisterFormProps = {
+export type LoginFormProps = {
   onSuccess: () => void;
 };
 
-export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
+export const LoginForm = ({ onSuccess }: LoginFormProps) => {
   const { addNotification } = useNotifications();
-  const { registering } = useRegister({
+  const { login } = useLogin({
     onSuccess: () => {
       addNotification({
-        title: 'Successfully registered',
+        title: 'Successfully logged in',
         type: 'success',
-        message: 'Welcome to Tweeter! 😊',
+        message: 'Welcome back to Tweeter 😊',
       });
       onSuccess();
     },
@@ -31,14 +31,13 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
       });
     },
   });
-
   return (
     <div>
       <Form
         onSubmit={(values) => {
-          registering(values);
+          login(values);
         }}
-        schema={registerInputSchema}
+        schema={loginInputSchema}
         options={{
           shouldUnregister: true,
         }}
@@ -58,15 +57,10 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
                 error={formState.errors['password']}
                 registration={register('password')}
               />
-              <Input
-                type="password"
-                placeholder="Confirm password"
-                error={formState.errors['confirm']}
-                registration={register('confirm')}
-              />
+
               <div>
                 <Button type="submit" className="w-full">
-                  Sign up
+                  Log in
                 </Button>
               </div>
             </>
@@ -75,9 +69,9 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
       </Form>
       <hr className="my-4" />
       <div className=" text-center text-sm text-gray-600">
-        Already have an account?{' '}
-        <Link className="text-primary underline" to="/auth/login">
-          Log in
+        Don&apos;t have an account yet?{' '}
+        <Link className="text-primary underline" to="/auth/register">
+          Sign up
         </Link>
       </div>
     </div>
