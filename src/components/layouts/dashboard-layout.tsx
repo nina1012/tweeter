@@ -1,7 +1,14 @@
+import { Header } from '../ui/header/header';
+
 export const DashboardLayout = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  return <div className="bg-red-400">{children}</div>;
+  return (
+    <div className="relative py-24">
+      <Header />
+      {children}
+    </div>
+  );
 };

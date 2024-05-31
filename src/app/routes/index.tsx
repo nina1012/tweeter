@@ -7,6 +7,7 @@ import { AppRoot } from './app/root';
 export const createRouter = () =>
   createBrowserRouter([
     // these pages are available to everyone
+    // landing page route
     {
       path: '/',
       lazy: async () => {
@@ -41,6 +42,14 @@ export const createRouter = () =>
           lazy: async () => {
             const { ProfileRoute } = await import('./app/profile');
             return { Component: ProfileRoute };
+          },
+        },
+        // this route is different from the "/" route since this route will only be available to authenticated users
+        {
+          path: 'home',
+          lazy: async () => {
+            const { HomeFeedRoute } = await import('./app/home');
+            return { Component: HomeFeedRoute };
           },
         },
       ],
