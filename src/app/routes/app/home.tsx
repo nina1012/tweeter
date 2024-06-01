@@ -1,6 +1,6 @@
 export const HomeFeedRoute = () => {
   return (
-    <div>
+    <div className="container">
       <h1>Here are some fresh tweets</h1>
     </div>
   );

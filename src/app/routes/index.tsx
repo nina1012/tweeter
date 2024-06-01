@@ -52,6 +52,13 @@ export const createRouter = () =>
             return { Component: HomeFeedRoute };
           },
         },
+        {
+          path: 'settings',
+          lazy: async () => {
+            const { SettingsRoute } = await import('./app/settings');
+            return { Component: SettingsRoute };
+          },
+        },
       ],
     },
     {
