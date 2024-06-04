@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-imports */
 import { useEffect } from 'react';
-import { redirect, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
 import { useUser } from '@/features/auth/api/get-current-user';
@@ -27,14 +27,23 @@ type ProtectedRouteProps = {
 };
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { pathname } = useLocation();
-  const { user, isLoadingUser } = useUser();
-  useEffect(() => {
-    if (!user && !isLoadingUser) {
-      redirect(`/auth/login?redirect=${pathname}`);
-    }
-  }, [user, pathname, isLoadingUser]);
+  const navigate = useNavigate();
+  const { user, isLoadingUser, isAuthenticated, fetchStatus, userError } =
+    useUser();
 
-  if (!user && !isLoadingUser) return null;
+  useEffect(() => {
+    if (!isAuthenticated && !isLoadingUser && fetchStatus !== 'fetching') {
+      navigate('/auth/login');
+    }
+  }, [isAuthenticated, isLoadingUser, fetchStatus, navigate, user]);
+
+  if (isLoadingUser) {
+    return 'loading...';
+  }
+
+  if (userError) {
+    throw userError;
+  }
+
   return children;
 };
