@@ -9,20 +9,49 @@ type UseRegisterOptions = {
   onError?: (error: AuthError['message']) => void;
 };
 
+export async function getUserData(userID: string) {
+  if (userID === undefined) return null;
+  const { data: users, error } = await supabase
+    .from('users')
+    .select(
+      'id, background_image, avatar_image, username, following, following_count, followers_count, bio, bookmarks, likes, retweets, replies',
+    )
+    .eq('id', userID);
+
+  if (error) throw new Error(error.message);
+  return users.at(0);
+}
+
 export const registerFn = async ({
   email,
   password,
+  username,
+  firstName,
+  lastName,
 }: {
   email: string;
   password: string;
+  username: string;
+  firstName: string;
+  lastName: string;
 }): Promise<AuthResponse['data']> => {
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
   });
+  const { data: users, error: insertionError } = await supabase
+    .from('users')
+    .insert({ username, firstName, lastName });
+  console.log(users);
+
+  if (insertionError) {
+    throw insertionError;
+  }
+
   if (error) {
     throw error;
   }
+
   return data;
 };
 

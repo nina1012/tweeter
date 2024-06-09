@@ -46,17 +46,40 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
         {({ register, formState }) => {
           return (
             <>
+              <div className="grid grid-cols-2 gap-2">
+                <Input
+                  type="text"
+                  placeholder="First Name"
+                  error={formState.errors['firstName']}
+                  registration={register('firstName')}
+                />
+                <Input
+                  type="text"
+                  placeholder="Last Name"
+                  error={formState.errors['lastName']}
+                  registration={register('lastName')}
+                />
+                <Input
+                  type="text"
+                  placeholder="Username"
+                  error={formState.errors['username']}
+                  registration={register('username')}
+                  autoComplete="username"
+                />
+              </div>
               <Input
                 type="email"
                 placeholder="Email Address"
                 error={formState.errors['email']}
                 registration={register('email')}
+                autoComplete="email"
               />
               <Input
                 type="password"
                 placeholder="Password"
                 error={formState.errors['password']}
                 registration={register('password')}
+                autoComplete="password"
               />
               <Input
                 type="password"

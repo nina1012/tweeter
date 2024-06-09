@@ -59,7 +59,7 @@ export const UserDropdown = () => {
       <DropdownMenuContent className="z-[1000] w-56 opacity-75">
         <DropdownMenuLabel className="font-bold">My Account</DropdownMenuLabel>
         <DropdownMenuGroup>
-          <Link to="/app/profile">
+          <Link to={`/app/${user?.id}`}>
             <DropdownMenuItem className="flex gap-3">
               <CircleUserRound />
               <span>Profile</span>

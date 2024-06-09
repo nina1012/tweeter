@@ -50,12 +50,14 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
                 placeholder="Email Address"
                 error={formState.errors['email']}
                 registration={register('email')}
+                defaultValue={'test@user.com'}
               />
               <Input
                 type="password"
                 placeholder="Password"
                 error={formState.errors['password']}
                 registration={register('password')}
+                defaultValue={'password'}
               />
 
               <div>
