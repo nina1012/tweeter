@@ -39,7 +39,7 @@ export const UserDropdown = () => {
   });
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="w-56 cursor-pointer">
+      <DropdownMenuTrigger asChild className="cursor-pointer lg:w-56">
         <div className="flex items-center gap-2">
           {!user ? (
             <div className="flex w-full items-center">

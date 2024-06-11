@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AuthResponse, AuthError } from '@supabase/supabase-js';
 import { useMutation } from '@tanstack/react-query';
 
