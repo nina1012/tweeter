@@ -18,7 +18,7 @@ import { useGetUserData } from '@/features/user/api/get-user-data';
 
 import { Button } from '../button';
 import { useNotifications } from '../notifications';
-import { Skeleton } from '../skeleton';
+import { Skeleton } from '../skeleton/skeleton';
 
 export const UserDropdown = () => {
   const { user } = useUser();
