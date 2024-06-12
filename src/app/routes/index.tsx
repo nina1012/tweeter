@@ -38,7 +38,7 @@ export const createRouter = () =>
       ),
       children: [
         {
-          path: ':username',
+          path: ':userID',
           lazy: async () => {
             const { ProfileRoute } = await import('./app/profile');
             return { Component: ProfileRoute };

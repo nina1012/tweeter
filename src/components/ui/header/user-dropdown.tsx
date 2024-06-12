@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-imports */
-import { CircleUserRound, LogOut, Settings, User } from 'lucide-react';
+import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
+import { CircleUserRound, LogOut, Settings } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import {
@@ -13,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useUser } from '@/features/auth/api/get-current-user';
 import { useLogout } from '@/features/auth/api/logout';
+import { useGetUserData } from '@/features/user/api/get-user-data';
 
 import { Button } from '../button';
 import { useNotifications } from '../notifications';
@@ -20,6 +22,8 @@ import { Skeleton } from '../skeleton';
 
 export const UserDropdown = () => {
   const { user } = useUser();
+  const { userData } = useGetUserData(user?.id as string);
+
   const { addNotification } = useNotifications();
   const navigate = useNavigate();
   const { logout } = useLogout({
@@ -39,7 +43,7 @@ export const UserDropdown = () => {
   });
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="cursor-pointer lg:w-56">
+      <DropdownMenuTrigger asChild className="cursor-pointer">
         <div className="flex items-center gap-2">
           {!user ? (
             <div className="flex w-full items-center">
@@ -49,9 +53,11 @@ export const UserDropdown = () => {
           ) : (
             <>
               <div className="flex size-10 items-center justify-center overflow-hidden rounded-full border border-gray-600 transition-colors">
-                <User />
+                <Avatar>
+                  <AvatarImage src={userData?.avatar_image} />
+                </Avatar>
               </div>
-              {user?.email}
+              {userData?.username}
             </>
           )}
         </div>

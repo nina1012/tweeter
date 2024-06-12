@@ -17,13 +17,13 @@ export const getUserData = async (userID: string) => {
 
 export const useGetUserData = (userID: string) => {
   const {
-    data: userProfile,
-    isLoading: isLoadingUserProfile,
-    error: userProfileError,
+    data: userData,
+    isLoading: isLoadingUserData,
+    error: userDataError,
   } = useQuery({
     queryKey: ['user', userID],
     queryFn: () => getUserData(userID),
   });
 
-  return { userProfile, isLoadingUserProfile, userProfileError };
+  return { userData, isLoadingUserData, userDataError };
 };
