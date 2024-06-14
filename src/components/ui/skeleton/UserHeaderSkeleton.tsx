@@ -2,40 +2,26 @@ import { Skeleton } from './skeleton';
 
 export const UserHeaderSkeleton = () => {
   return (
-    <div className="relative -top-10 -mb-14 flex gap-8 rounded-md bg-white p-8 shadow-md">
-      <div className="relative -top-20 overflow-hidden rounded-xl bg-white">
+    <div className="relative -mb-14 flex flex-col gap-0 rounded-md bg-white px-4 shadow-md md:-top-10 md:flex-row md:flex-wrap md:gap-8">
+      <div className="mx-auto size-20 bg-white md:mx-0 md:size-40">
         <Skeleton
-          className="size-40  border-4 border-white object-cover object-center shadow-md
+          className="relative -top-10 size-20 rounded-xl border-4 border-white md:size-40
         "
         />
       </div>
-      <div className="">
-        <div className="mb-5 flex flex-col items-center justify-center gap-1 md:mb-10 md:flex-row md:justify-between md:gap-10">
-          {/* user's first and last name and username */}
-          <div>
-            <Skeleton className="h-5 w-40" />
-            {/* <p className="text-sm text-gray-600">@{username}</p> */}
+      <div className="-mt-5 flex flex-col items-center gap-4 md:mt-0 md:items-start md:justify-evenly">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center">
+          <Skeleton className="h-8 w-40" />
+          <div className="flex justify-center gap-2">
+            <Skeleton className="h-3 w-20" />
+            <Skeleton className="h-3 w-20" />
           </div>
-          {/* user's following and followers counts */}
-          {/* <div className="flex gap-6 text-xs">
-            <div>
-              <span className="text-sm font-semibold">
-                {formatNumber(following_count)}
-              </span>{' '}
-              following
-            </div>
-            <div>
-              <span className="text-sm font-semibold">
-                {formatNumber(followers_count)}{' '}
-              </span>
-              followers
-            </div>
-          </div> */}
         </div>
-        {/* user's bio */}
-        {/* <div className="mb-4 w-full text-center text-base font-medium leading-4 tracking-tight md:max-w-sm md:text-left">
-          {bio ? <p>{bio}</p> : <p>User has not added a bio yet</p>}
-        </div> */}
+        {/* description */}
+        <div className="flex flex-col items-center gap-2 md:items-start">
+          <Skeleton className="h-4 w-72" />
+          <Skeleton className="h-4 w-56" />
+        </div>
       </div>
     </div>
   );
