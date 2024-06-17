@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-imports */
 import { useParams } from 'react-router-dom';
 
-import { Spinner } from '@/components/ui/spinner';
+import { UserProfileSkeleton } from '@/components/ui/skeleton/user/UserProfileSkeleton';
 import { UserBackground } from '@/components/ui/user/UserBackground';
 import { UserHeader } from '@/components/ui/user/UserHeader';
 import { useGetUserData } from '@/features/user/api/get-user-data';
@@ -11,13 +11,9 @@ export const ProfileRoute = () => {
   const { userID } = useParams();
   const { userData, isLoadingUserData } = useGetUserData(userID as string);
 
-  // here will be rendered skeleton for userData
+  // here will be rendered UserProfileSkeleton that consists of many skeletons within itself
   if (isLoadingUserData) {
-    return (
-      <div className="h-screen w-full items-center justify-center">
-        <Spinner className="mx-auto"></Spinner>
-      </div>
-    );
+    return <UserProfileSkeleton />;
   }
   return (
     <div className="min-h-svh">

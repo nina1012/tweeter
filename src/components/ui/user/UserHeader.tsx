@@ -1,21 +1,15 @@
+/* eslint-disable no-restricted-imports */
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 
-// eslint-disable-next-line no-restricted-imports
 import { useGetUserData } from '@/features/user/api/get-user-data';
 import { formatNumber } from '@/utils/formatNumbers';
-
-import { UserHeaderSkeleton } from '../skeleton/UserHeaderSkeleton';
 
 type UserHeaderProps = {
   userID: string;
 };
 
 export const UserHeader = ({ userID }: UserHeaderProps) => {
-  const { userData, isLoadingUserData } = useGetUserData(userID);
-
-  if (isLoadingUserData) {
-    return <UserHeaderSkeleton />;
-  }
+  const { userData } = useGetUserData(userID);
 
   if (!userData) return;
 
@@ -30,18 +24,18 @@ export const UserHeader = ({ userID }: UserHeaderProps) => {
 
   return (
     <div className="relative -mb-14 flex flex-col gap-0 rounded-md bg-white px-4 shadow-md md:-top-10 md:flex-row md:gap-8">
-      <div className="-mb-6 h-auto md:mb-0">
+      <div className="-mb-6 md:mb-0">
         <Avatar>
           <AvatarImage
             src={avatar_image}
-            className="relative -top-10 mx-auto size-20 rounded-xl border-4 border-white bg-gray-500 object-cover object-center shadow-md
- md:-top-20 md:mx-0 md:size-40
+            className="relative -top-10 mx-auto size-20 rounded-xl border-4 border-white bg-gray-500 object-cover object-center
+ shadow-md md:-top-12 md:mx-0 md:size-40
         "
           />
         </Avatar>
       </div>
-      <div className="flex flex-col justify-center">
-        <div className="mb-5 flex flex-col items-center justify-center gap-1 text-center md:flex-row md:justify-between md:gap-10 md:text-left">
+      <div className="flex flex-col justify-center md:gap-y-6">
+        <div className="mb-5 flex flex-col items-center justify-center gap-2 text-center md:mb-0 md:flex-row md:justify-start md:gap-10  md:text-left">
           {/* user's first and last name and username */}
           <div className="">
             <p className="text-2xl font-semibold tracking-tighter	">
@@ -49,7 +43,7 @@ export const UserHeader = ({ userID }: UserHeaderProps) => {
             </p>
           </div>
           {/* user's following and followers counts */}
-          <div className="flex gap-6 text-xs">
+          <div className="flex items-center gap-6 text-xs">
             <div>
               <span className="text-sm font-semibold">
                 {formatNumber(following_count)}
@@ -62,10 +56,15 @@ export const UserHeader = ({ userID }: UserHeaderProps) => {
               </span>
               followers
             </div>
+            {/* <div>
+              {user?.id === userData?.user_id && (
+                <Button variant="default">Edit</Button>
+              )}
+            </div> */}
           </div>
         </div>
         {/* user's bio */}
-        <div className="mb-4 w-full text-center text-base font-medium leading-4 tracking-tight text-gray-600 md:max-w-sm md:text-left">
+        <div className="mx-auto mb-4 w-8/12 text-center text-lg font-medium leading-6 tracking-tight text-gray-600 md:mx-0 md:mb-0 md:w-full md:max-w-md md:text-left">
           {bio ? <p>{bio}</p> : <p>User has not added a bio yet</p>}
         </div>
       </div>

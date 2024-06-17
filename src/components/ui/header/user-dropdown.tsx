@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-imports */
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
-import { CircleUserRound, LogOut, Settings } from 'lucide-react';
+import { ChevronDown, CircleUserRound, LogOut, Settings } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import {
@@ -43,26 +43,34 @@ export const UserDropdown = () => {
   });
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="cursor-pointer">
-        <div className="flex items-center gap-2">
+      <DropdownMenuTrigger
+        asChild
+        className="min-w-40 cursor-pointer rounded-lg p-2 hover:bg-muted"
+      >
+        <div className="flex items-center justify-center gap-2">
           {!user ? (
-            <div className="flex w-full items-center">
-              <Skeleton className="size-12 rounded-full" />
+            // skeleton for avatar and username
+            <div className="flex w-full items-center justify-between">
+              <Skeleton className="size-10 rounded-full" />
               <Skeleton className="ml-2 h-6 w-2/3" />
             </div>
           ) : (
             <>
               <div className="flex size-10 items-center justify-center overflow-hidden rounded-full border border-gray-600 transition-colors">
                 <Avatar>
-                  <AvatarImage src={userData?.avatar_image} />
+                  <AvatarImage
+                    src={userData?.avatar_image}
+                    className="size-10 object-cover object-center"
+                  />
                 </Avatar>
               </div>
               {userData?.username}
             </>
           )}
+          <ChevronDown />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="z-[1000] w-56 opacity-75">
+      <DropdownMenuContent className="z-[1000] w-56 opacity-100">
         <DropdownMenuLabel className="font-bold">My Account</DropdownMenuLabel>
         <DropdownMenuGroup>
           <Link to={`/app/${user?.id}`}>
