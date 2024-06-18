@@ -4,7 +4,7 @@ export const UserHeaderSkeleton = () => {
   return (
     <>
       {/* background skeleton */}
-      <Skeleton className="-mt-8 h-72 w-full" />;
+      <Skeleton className="-mt-8 h-72 w-full bg-zinc-200" />;
       {/* actual content's skeleton */}
       <div className="container">
         <div className="relative -mb-14 flex flex-col gap-0 rounded-md bg-white px-4 shadow-md md:-top-16 md:flex-row md:flex-wrap md:gap-8">

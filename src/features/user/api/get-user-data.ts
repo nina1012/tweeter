@@ -2,7 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 
 import { supabase } from '@/lib/supabase';
 
-export const getUserData = async (userID: string) => {
+import { User } from '../types/index';
+
+export const getUserData = async (userID: string): Promise<User | null> => {
   if (!userID) return null;
   const { data: users, error } = await supabase
     .from('users')
@@ -12,7 +14,7 @@ export const getUserData = async (userID: string) => {
     .eq('user_id', userID);
 
   if (error) throw new Error(error.message);
-  return users[0];
+  return users[0] as User;
 };
 
 export const useGetUserData = (userID: string) => {
