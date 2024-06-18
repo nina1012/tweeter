@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-imports */
 import { useParams } from 'react-router-dom';
 
 import { UserProfileSkeleton } from '@/components/ui/skeleton/user/UserProfileSkeleton';

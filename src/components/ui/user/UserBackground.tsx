@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-imports */
 import { useGetUserData } from '@/features/user/api/get-user-data';
 
 type UserBackgroundProps = {

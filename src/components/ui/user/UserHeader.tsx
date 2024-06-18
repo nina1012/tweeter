@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-imports */
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 
 import { useGetUserData } from '@/features/user/api/get-user-data';
@@ -56,11 +55,6 @@ export const UserHeader = ({ userID }: UserHeaderProps) => {
               </span>
               followers
             </div>
-            {/* <div>
-              {user?.id === userData?.user_id && (
-                <Button variant="default">Edit</Button>
-              )}
-            </div> */}
           </div>
         </div>
         {/* user's bio */}

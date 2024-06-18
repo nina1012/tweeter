@@ -42,12 +42,12 @@ module.exports = {
         'plugin:vitest/legacy-recommended',
       ],
       rules: {
-        'no-restricted-imports': [
-          'error',
-          {
-            patterns: ['@/features/*/*'],
-          },
-        ],
+        // 'no-restricted-imports': [
+        //   'error',
+        //   {
+        //     patterns: ['@/features/*/*'],
+        //   },
+        // ],
         'import/no-cycle': 'error',
         'linebreak-style': ['error', 'unix'],
         'react/prop-types': 'off',

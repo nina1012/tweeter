@@ -1,7 +1,16 @@
 export const HomeFeedRoute = () => {
   return (
-    <div className="container">
-      <h1>Here are some fresh tweets</h1>
+    <div className="container mt-10 grid min-h-svh grid-cols-1 justify-center gap-0 md:mt-6 md:grid-cols-[40rem,1fr] md:gap-10 ">
+      {/* main content */}
+      <div>
+        <div>Form for posting the tweet</div>
+        <div>Home tweet container that contains the most recent tweets</div>
+      </div>
+      {/* side content */}
+      <div>
+        <div>Hashtag trends</div>
+        <div>Who to follow</div>
+      </div>
     </div>
   );
 };
