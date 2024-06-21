@@ -32,10 +32,28 @@ export const loginInputSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters long'),
 });
 
+const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
+const ACCEPTED_FILE_TYPES = [
+  'image/png',
+  'image/jpg',
+  'image/jpeg',
+  'image/gif',
+];
+
 // update shema
-export const editUserProfileSchemaa = z.object({
-  backgroundImage: z.string(),
-  avatarImage: z.string(),
+export const editUserProfileSchema = z.object({
+  backgroundImage: z.instanceof(FileList).refine((files) => {
+    if (!files || files.length === 0) return true; // Allow empty FileList
+    const file = files[0];
+    return ACCEPTED_FILE_TYPES.includes(file.type);
+  }, 'File must be a PNG'),
+  avatarImage: z
+    .instanceof(FileList)
+    .optional()
+    .refine((file) => {
+      // console.log(file);
+      return !file || file[0]?.size <= MAX_UPLOAD_SIZE;
+    }, 'File size must be less than 3MB'),
 });
 
 type ProtectedRouteProps = {

@@ -3,7 +3,7 @@ import { SaveIcon, X } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import { editUserProfileSchemaa } from '@/lib/auth';
+import { editUserProfileSchema } from '@/lib/auth';
 
 import { User } from '../../user/types';
 
@@ -31,9 +31,11 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
       <div className="mx-5 w-full max-w-xl rounded-md border-[0.5px] border-gray-500/5 bg-white p-6 shadow-md md:mx-32">
         <Form
           onSubmit={(values) => {
+            console.log('submitted');
+
             console.log(values);
           }}
-          schema={editUserProfileSchemaa}
+          schema={editUserProfileSchema}
           options={{
             shouldUnregister: true,
           }}
@@ -73,6 +75,7 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
                     error={formState.errors.avatarImage}
                     registration={register('avatarImage')}
                   />
+                  {/* <UserModalNameAndBio userData={userData} /> */}
                 </div>
               </>
             );
