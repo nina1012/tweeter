@@ -1,14 +1,19 @@
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
+import { Edit } from 'lucide-react';
 
+import { Button } from '@/components/ui/button';
+import { useUser } from '@/features/auth/api/get-current-user';
 import { useGetUserData } from '@/features/user/api/get-user-data';
 import { formatNumber } from '@/utils/formatNumbers';
 
 type UserHeaderProps = {
   userID: string;
+  handleEdit: () => void;
 };
 
-export const UserHeader = ({ userID }: UserHeaderProps) => {
+export const UserHeader = ({ userID, handleEdit }: UserHeaderProps) => {
   const { userData } = useGetUserData(userID);
+  const { user } = useUser();
 
   if (!userData) return;
 
@@ -22,7 +27,7 @@ export const UserHeader = ({ userID }: UserHeaderProps) => {
   } = userData;
 
   return (
-    <div className="relative -mb-14 flex flex-col gap-0 rounded-md bg-white px-4 shadow-md md:-top-10 md:flex-row md:gap-8">
+    <div className="relative -mb-14 grid grid-cols-1 items-center gap-0 rounded-md bg-white px-4 shadow-md md:-top-10 md:grid-cols-[160px,1fr,130px] md:flex-row md:items-stretch md:gap-8">
       <div className="-mb-6 md:mb-0">
         <Avatar>
           <AvatarImage
@@ -62,6 +67,13 @@ export const UserHeader = ({ userID }: UserHeaderProps) => {
           {bio ? <p>{bio}</p> : <p>User has not added a bio yet</p>}
         </div>
       </div>
+      {user?.id === userData.user_id && (
+        <div className="mx-auto mb-4 self-center md:m-0 md:-mt-14">
+          <Button onClick={handleEdit}>
+            <Edit className="mr-2 size-4" /> Edit profile
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
