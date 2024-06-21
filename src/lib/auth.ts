@@ -35,6 +35,7 @@ export const loginInputSchema = z.object({
 // update shema
 export const editUserProfileSchemaa = z.object({
   backgroundImage: z.string(),
+  avatarImage: z.string(),
 });
 
 type ProtectedRouteProps = {

@@ -68,7 +68,7 @@ export const UserHeader = ({ userID, handleEdit }: UserHeaderProps) => {
         </div>
       </div>
       {user?.id === userData.user_id && (
-        <div className="mx-auto mb-4 self-center md:m-0 md:-mt-14">
+        <div className="mx-auto mb-4 self-center md:m-0 md:-mt-20">
           <Button onClick={handleEdit}>
             <Edit className="mr-2 size-4" /> Edit profile
           </Button>
