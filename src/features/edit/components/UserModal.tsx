@@ -1,20 +1,34 @@
 import { motion } from 'framer-motion';
 import { SaveIcon, X } from 'lucide-react';
+import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Form, Input } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import { editUserProfileSchema } from '@/lib/auth';
 
 import { User } from '../../user/types';
 
 import { UserModalAvatarImage } from './UserModalAvatarImage';
 import { UserModalBackgroundImage } from './UserModalBackgroundImage';
+import { UserModalSkeleton } from './UserModalSkeleton';
 
 export type UserModalProps = {
   userData: User | null | undefined;
   onClose: () => void;
 };
+
+export const editUserProfileSchema = z.object({
+  backgroundImage: z
+    .instanceof(FileList)
+    .optional()
+    .refine((files) => {
+      if (!files || files.length === 0) return true; // Allow empty FileList
+    }, 'File must be a PNG'),
+  avatarImage: z.instanceof(FileList).optional(),
+  name: z.string(),
+  bio: z.string(),
+});
+
 export const UserModal = ({ userData, onClose }: UserModalProps) => {
   return (
     <motion.div
@@ -64,39 +78,45 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
                 </div>
                 <hr />
                 {/* modal content */}
-                <UserModalBackgroundImage
-                  userData={userData}
-                  error={formState.errors.backgroundImage}
-                  registration={register('backgroundImage')}
-                />
-                <div className=" grid grid-cols-[150px,1fr] gap-5">
-                  <div className="">
-                    <UserModalAvatarImage
-                      avatarImage={userData?.avatar_image as string}
-                      error={formState.errors.avatarImage}
-                      registration={register('avatarImage')}
+                {userData ? (
+                  <>
+                    <UserModalBackgroundImage
+                      userData={userData}
+                      error={formState.errors.backgroundImage}
+                      registration={register('backgroundImage')}
                     />
-                  </div>
-                  {/* name and description input fields */}
-                  <div className="flex w-full flex-col gap-2 border-l border-black pl-5">
-                    <Input
-                      type="text"
-                      registration={register('name')}
-                      id="name"
-                      placeholder="First and last name"
-                      defaultValue={
-                        userData?.firstName + ' ' + userData?.lastName
-                      }
-                      label="First and last name:"
-                    />
-                    <Textarea
-                      className=""
-                      registration={register('bio')}
-                      placeholder="Bio:"
-                      defaultValue={userData?.bio}
-                    />
-                  </div>
-                </div>
+                    <div className=" grid grid-cols-[150px,1fr] gap-5">
+                      <div className="">
+                        <UserModalAvatarImage
+                          avatarImage={userData?.avatar_image as string}
+                          error={formState.errors.avatarImage}
+                          registration={register('avatarImage')}
+                        />
+                      </div>
+                      {/* name and description input fields */}
+                      <div className="flex w-full flex-col gap-2 border-l border-gray-200 pl-5">
+                        <Input
+                          type="text"
+                          registration={register('name')}
+                          id="name"
+                          placeholder="First and last name"
+                          defaultValue={
+                            userData?.firstName + ' ' + userData?.lastName
+                          }
+                          label="First and last name:"
+                        />
+                        <Textarea
+                          className=""
+                          registration={register('bio')}
+                          placeholder="Bio:"
+                          defaultValue={userData?.bio}
+                        />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <UserModalSkeleton />
+                )}
               </>
             );
           }}

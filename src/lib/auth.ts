@@ -32,19 +32,6 @@ export const loginInputSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters long'),
 });
 
-// update shema
-export const editUserProfileSchema = z.object({
-  backgroundImage: z.instanceof(FileList).optional(),
-  avatarImage: z
-    .instanceof(FileList)
-    .optional()
-    .refine((file) => {
-      return file && file[0]?.size <= 1024 * 1024 * 3; // 3MB
-    }, 'File size must be less than 3MB'),
-  name: z.string(),
-  bio: z.string(),
-});
-
 type ProtectedRouteProps = {
   children: React.ReactNode;
 };
