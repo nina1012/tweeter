@@ -60,6 +60,7 @@ export const UserDropdown = () => {
                   <AvatarImage
                     src={userData?.avatar_image}
                     className="size-8 object-cover object-center"
+                    alt="Avatar image"
                   />
                 </Avatar>
               </div>

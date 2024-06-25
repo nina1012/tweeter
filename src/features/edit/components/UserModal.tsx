@@ -18,14 +18,9 @@ export type UserModalProps = {
 };
 
 export const editUserProfileSchema = z.object({
-  backgroundImage: z
-    .instanceof(FileList)
-    .optional()
-    .refine((files) => {
-      if (!files || files.length === 0) return true; // Allow empty FileList
-    }, 'File must be a PNG'),
+  backgroundImage: z.instanceof(FileList).optional(),
   avatarImage: z.instanceof(FileList).optional(),
-  name: z.string(),
+  username: z.string(),
   bio: z.string(),
 });
 
@@ -45,8 +40,9 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
     >
       <div className="mx-5 w-full max-w-xl rounded-md border-[0.5px] border-gray-500/5 bg-white p-6 shadow-md md:mx-32">
         <Form
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={({ username }) => {
+            // TO DO update user's info
+            console.log(username);
             onClose();
           }}
           schema={editUserProfileSchema}
@@ -85,8 +81,8 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
                       error={formState.errors.backgroundImage}
                       registration={register('backgroundImage')}
                     />
-                    <div className=" grid grid-cols-[150px,1fr] gap-5">
-                      <div className="">
+                    <div className="grid grid-rows-1 gap-5 md:grid-cols-[150px,1fr]">
+                      <div className="flex items-center justify-center">
                         <UserModalAvatarImage
                           avatarImage={userData?.avatar_image as string}
                           error={formState.errors.avatarImage}
@@ -97,12 +93,10 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
                       <div className="flex w-full flex-col gap-2 border-l border-gray-200 pl-5">
                         <Input
                           type="text"
-                          registration={register('name')}
-                          id="name"
-                          placeholder="First and last name"
-                          defaultValue={
-                            userData?.firstName + ' ' + userData?.lastName
-                          }
+                          registration={register('username')}
+                          id="username"
+                          placeholder="Username:"
+                          defaultValue={userData?.username}
                           label="First and last name:"
                         />
                         <Textarea

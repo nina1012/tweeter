@@ -27,11 +27,9 @@ export const UserModalBackgroundImage = ({
       {!userData?.background_image && (
         <div
           className="flex h-40 w-full justify-center 
-rounded-md bg-gray-500 pt-14 text-sm font-semibold capitalize
+rounded-md bg-neutral-400 pt-14 text-sm font-semibold capitalize
         "
-        >
-          No image
-        </div>
+        ></div>
       )}
       {/* if there is a background image */}
       {userData?.background_image && (
