@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { UserModal } from '@/components/ui/modal/user-modal/UserModal';
 import { ModalWrapper } from '@/components/ui/modal-wrapper';
 import { UserProfileSkeleton } from '@/components/ui/skeleton/user/UserProfileSkeleton';
-import { UserModal } from '@/features/edit/components/UserModal';
 import { useGetUserData } from '@/features/user/api/get-user-data';
 import { UserBackground } from '@/features/user/components/UserBackground';
 import { UserHeader } from '@/features/user/components/UserHeader';

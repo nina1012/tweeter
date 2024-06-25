@@ -14,7 +14,7 @@ export const UserBackground = ({ userID }: UserBackgroundProps) => {
           'https://downtownpensacola.com/static/img/defaultbanner.jpg'
         }
         alt="Background"
-        className="h-72 w-full object-cover object-center"
+        className="size-full object-cover object-center"
       />
     </div>
   );
