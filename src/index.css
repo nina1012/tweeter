@@ -4,7 +4,7 @@
 
 @layer components {
   .container {
-    @apply px-5 md:px-32 lg:px-48 w-full;
+    @apply px-5 md:px-32 lg:px-40 w-full;
   }
 }
 

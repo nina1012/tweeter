@@ -1,6 +1,6 @@
 export type Tweet = {
   tweet_id: string;
-  image: string | null;
+  image?: string;
   likes: [];
   saves: [];
   content: string;
