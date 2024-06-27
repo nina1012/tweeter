@@ -7,6 +7,7 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Form, Input } from '@/components/ui/form';
 import { useNotifications } from '@/components/ui/notifications';
+import { Spinner } from '@/components/ui/spinner';
 import { useUser } from '@/features/auth/api/get-current-user';
 import { useGetUserData } from '@/features/user/api/get-user-data';
 
@@ -27,7 +28,7 @@ export const PublishTweet = () => {
   const { userData } = useGetUserData(user?.id as string);
   const { addNotification } = useNotifications();
 
-  const { createTweet } = useCreateTweet({
+  const { createTweet, creatingTweet } = useCreateTweet({
     onSuccess: () => {
       addNotification({
         title: 'Tweet is created',
@@ -104,7 +105,16 @@ export const PublishTweet = () => {
                   </label>
                 </div>
                 <div>
-                  <Button type="submit">Tweet</Button>
+                  <Button type="submit" className="min-w-28">
+                    {creatingTweet ? (
+                      <>
+                        <Spinner className="mr-2 text-white" size="sm" />{' '}
+                        <span>tweeting</span>
+                      </>
+                    ) : (
+                      <span>tweet</span>
+                    )}
+                  </Button>
                 </div>
               </div>
             </>

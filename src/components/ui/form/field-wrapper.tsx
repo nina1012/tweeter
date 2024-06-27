@@ -13,7 +13,7 @@ export type FieldWrapperProps = {
 export const FieldWrapper = (props: FieldWrapperProps) => {
   const { label, error, children } = props;
   return (
-    <div className="space-y-1">
+    <div className="w-full space-y-1">
       <Label>
         {label}
         <div className="mt-1">{children}</div>

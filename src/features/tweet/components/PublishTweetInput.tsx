@@ -15,7 +15,7 @@ export const PublishTweetInput = ({ registration }: PublishTweetInputProps) => {
         type="text"
         registration={registration}
         placeholder="What's happening?"
-        className="w-full select-text resize-none  !overflow-hidden border-none bg-none p-0 text-base font-medium placeholder:text-stone-300 focus-visible:ring-white"
+        className="min-h-10 w-full select-text resize-none !overflow-hidden border-none bg-none p-0 text-base font-medium placeholder:text-stone-300 focus-visible:ring-white"
         autoComplete="off"
       />
     </div>
