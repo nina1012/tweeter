@@ -1,4 +1,4 @@
-import { PublishTweet } from '@/features/tweeting/components/PublishTweet';
+import { PublishTweet } from '@/features/tweet/components/PublishTweet';
 
 export const HomeFeedRoute = () => {
   return (

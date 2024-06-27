@@ -10,7 +10,7 @@ export const UserHeaderSkeleton = () => {
         <div className="relative -mb-14 flex flex-col gap-0 rounded-md bg-white px-4 shadow-md md:-top-16 md:flex-row md:flex-wrap md:gap-8">
           <div className="mx-auto size-20 bg-white md:mx-0 md:size-40">
             <Skeleton
-              className="relative -top-12 size-20 rounded-xl border-4 border-white md:size-40
+              className="relative -top-12 size-20 rounded-md border-4 border-white md:size-40
         "
             />
           </div>
