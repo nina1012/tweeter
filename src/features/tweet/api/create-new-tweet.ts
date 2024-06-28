@@ -6,6 +6,8 @@ import { supabase } from '@/lib/supabase';
 
 import { Tweet } from '../types';
 
+import { uploadImage } from './upload-image';
+
 export type useCreateTweetOptions = {
   onSuccess?: () => void;
   onError?: (error: any) => void;
@@ -21,26 +23,23 @@ export const createTweetFn = async ({
   newTweet,
 }: createTweetFnProps): Promise<Tweet | null> => {
   if (!newTweet) return null;
-  //    handling image and uploading to bucket
-  //   let imageUrl = '';
+  // handling image and uploading to bucket if image has been selected
 
-  //   if (newTweet.image?.length) {
-  //     // const fileType = newTweet.image[0].type.split('/').at(1);
+  if (newTweet.image && newTweet.image.length > 0) {
+    const imageFile = newTweet.image.item(0);
+    if (imageFile) {
+      const imageName = imageFile.name;
 
-  //     const imageName = `tweet_${Date.now()}_${newTweet.image[0]}`;
-
-  //     imageUrl = `${import.meta.env.BASE_URL}${imageName}`;
-
-  //     // console.log(
-  //     //   'this image will be uploaded to tweet_images bucket',
-  //     //   imageName,
-  //     //   imageUrl,
-  //     // );
-  //   }
-
+      await uploadImage({
+        image: imageFile,
+        imageName,
+        bucketName: 'tweet_images',
+      });
+    }
+  }
   const { data, error } = await supabase.rpc('add_new_tweet', {
     tweet_content: newTweet.content,
-    tweet_image: newTweet.image,
+    tweet_image: newTweet?.image?.item(0)?.name,
     user_id: userID,
     is_reply: false,
     is_retweet: false,

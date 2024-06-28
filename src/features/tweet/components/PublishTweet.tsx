@@ -19,7 +19,7 @@ import { PublishTweetInput } from './PublishTweetInput';
 const publishTweetSchema = z.object({
   // tweet_id: z.string().default(''), // Assuming tweet_id should be provided
   content: z.string().min(1, 'Content is required'),
-  image: z.instanceof(FileList).optional().or(z.string()),
+  image: z.instanceof(FileList).optional(),
   // hashtags: z.array(z.string()).optional(), // Assuming array of strings
 });
 
@@ -64,6 +64,8 @@ export const PublishTweet = () => {
             author_id: user.id,
             hashtags: [],
           };
+          console.log(values, tweet.image);
+
           createTweet(tweet);
         }}
         schema={publishTweetSchema}

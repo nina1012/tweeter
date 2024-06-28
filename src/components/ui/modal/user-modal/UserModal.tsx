@@ -4,8 +4,9 @@ import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Form, Input } from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
 import { User } from '@/features/user/types';
+
+import { Textarea } from '../../form/textarea';
 
 import { UserModalAvatarImage } from './UserModalAvatarImage';
 import { UserModalBackgroundImage } from './UserModalBackgroundImage';
@@ -102,6 +103,7 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
                           className=""
                           registration={register('bio')}
                           placeholder="Bio:"
+                          label="Bio:"
                           defaultValue={userData?.bio}
                         />
                       </div>

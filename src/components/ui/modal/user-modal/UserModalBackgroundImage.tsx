@@ -43,9 +43,9 @@ rounded-md bg-neutral-400 pt-14 text-sm font-semibold capitalize
       {/* file input to change the background image */}
       <label
         htmlFor="user-background-image-input"
-        className="absolute left-1/2 top-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-stone-500/50 text-primary focus-within:bg-primary focus-within:text-white hover:bg-primary hover:text-white"
+        className="absolute left-1/2 top-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center justify-center rounded-full bg-stone-500/50 text-primary focus-within:bg-primary focus-within:text-white hover:bg-primary hover:text-white"
       >
-        <ImagePlus />
+        <ImagePlus className="size-1/2 space-y-1" />
         <Input
           type="file"
           registration={registration}
