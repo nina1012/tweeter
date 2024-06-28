@@ -7,6 +7,7 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Form, Input } from '@/components/ui/form';
 import { useNotifications } from '@/components/ui/notifications';
+import { PublishTweetSkeleton } from '@/components/ui/skeleton/home/PublishTweetSkeleton';
 import { Spinner } from '@/components/ui/spinner';
 import { useUser } from '@/features/auth/api/get-current-user';
 import { useGetUserData } from '@/features/user/api/get-user-data';
@@ -25,7 +26,7 @@ const publishTweetSchema = z.object({
 
 export const PublishTweet = () => {
   const { user } = useUser();
-  const { userData } = useGetUserData(user?.id as string);
+  const { userData, isLoadingUserData } = useGetUserData(user?.id as string);
   const { addNotification } = useNotifications();
 
   const { createTweet, creatingTweet } = useCreateTweet({
@@ -44,6 +45,10 @@ export const PublishTweet = () => {
     },
   });
   if (!user) return null;
+
+  if (isLoadingUserData) {
+    return <PublishTweetSkeleton />;
+  }
 
   return (
     <div className="mb-4 w-full rounded-md bg-white px-5 py-2 shadow-md">
