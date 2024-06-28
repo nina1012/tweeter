@@ -25,10 +25,13 @@ export const createTweetFn = async ({
   if (!newTweet) return null;
   // handling image and uploading to bucket if image has been selected
 
+  // this keeps the reference to the bucket from where it will be fetched
+  let imageUrl = '';
   if (newTweet.image && newTweet.image.length > 0) {
     const imageFile = newTweet.image.item(0);
     if (imageFile) {
       const imageName = imageFile.name;
+      imageUrl = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/tweet_images/${imageName}`;
 
       await uploadImage({
         image: imageFile,
@@ -39,7 +42,7 @@ export const createTweetFn = async ({
   }
   const { data, error } = await supabase.rpc('add_new_tweet', {
     tweet_content: newTweet.content,
-    tweet_image: newTweet?.image?.item(0)?.name,
+    tweet_image: imageUrl,
     user_id: userID,
     is_reply: false,
     is_retweet: false,
