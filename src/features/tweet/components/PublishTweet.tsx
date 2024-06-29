@@ -18,7 +18,6 @@ import { Tweet } from '../types';
 import { PublishTweetInput } from './PublishTweetInput';
 
 const publishTweetSchema = z.object({
-  // tweet_id: z.string().default(''), // Assuming tweet_id should be provided
   content: z.string().min(1, 'Content is required'),
   image: z.instanceof(FileList).optional(),
   // hashtags: z.array(z.string()).optional(), // Assuming array of strings

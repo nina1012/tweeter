@@ -17,3 +17,13 @@ export type User = {
   lastName: string;
   user_id: string;
 };
+
+//  testing
+// these types for avatar and bg image are different type than User type
+
+export type UpdatedUser = {
+  avatar_image: FileList | null;
+  background_image: FileList | null;
+  bio?: string;
+  username?: string;
+};

@@ -8,7 +8,7 @@ import { User } from '@/features/user/types';
 export type UserModalBackgroundImageProps = {
   error?: FieldError | null | undefined;
   userData: User | undefined | null;
-  registration: UseFormRegisterReturn<'backgroundImage'>;
+  registration: UseFormRegisterReturn<'background_image'>;
 };
 
 export const UserModalBackgroundImage = ({

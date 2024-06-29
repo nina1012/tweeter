@@ -4,7 +4,8 @@ import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Form, Input } from '@/components/ui/form';
-import { User } from '@/features/user/types';
+import { useUpdateUserData } from '@/features/user/api/update-user-data';
+import { UpdatedUser, User } from '@/features/user/types';
 
 import { Textarea } from '../../form/textarea';
 
@@ -18,13 +19,14 @@ export type UserModalProps = {
 };
 
 export const editUserProfileSchema = z.object({
-  backgroundImage: z.instanceof(FileList).optional(),
-  avatarImage: z.instanceof(FileList).optional(),
+  background_image: z.instanceof(FileList).optional(),
+  avatar_image: z.instanceof(FileList).optional(),
   username: z.string(),
   bio: z.string(),
 });
 
 export const UserModal = ({ userData, onClose }: UserModalProps) => {
+  const { updateUser } = useUpdateUserData();
   return (
     <motion.div
       initial={{
@@ -40,9 +42,10 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
     >
       <div className="mx-5 w-full max-w-xl rounded-md border-[0.5px] border-gray-500/5 bg-white p-6 shadow-md md:mx-32">
         <Form
-          onSubmit={({ username }) => {
+          onSubmit={(values: UpdatedUser) => {
             // TO DO update user's info
-            console.log(username);
+            console.log(values);
+            updateUser(values);
             onClose();
           }}
           schema={editUserProfileSchema}
@@ -78,15 +81,15 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
                   <>
                     <UserModalBackgroundImage
                       userData={userData}
-                      error={formState.errors.backgroundImage}
-                      registration={register('backgroundImage')}
+                      error={formState.errors.background_image}
+                      registration={register('background_image')}
                     />
                     <div className="grid grid-rows-1 gap-5 md:grid-cols-[150px,1fr]">
                       <div className="flex items-center justify-center">
                         <UserModalAvatarImage
-                          avatarImage={userData?.avatar_image as string}
-                          error={formState.errors.avatarImage}
-                          registration={register('avatarImage')}
+                          avatar_image={userData?.avatar_image}
+                          error={formState.errors.avatar_image}
+                          registration={register('avatar_image')}
                         />
                       </div>
                       {/* name and description input fields */}
