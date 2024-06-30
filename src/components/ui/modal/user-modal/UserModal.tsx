@@ -46,7 +46,6 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
             // TO DO update user's info
             console.log(values);
             updateUser(values);
-            onClose();
           }}
           schema={editUserProfileSchema}
           options={{

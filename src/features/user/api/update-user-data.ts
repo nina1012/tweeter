@@ -1,7 +1,6 @@
 import { InvalidateQueryFilters, useMutation } from '@tanstack/react-query';
 
 import { useUser } from '@/features/auth/api/get-current-user';
-import { uploadImage } from '@/features/tweet/api/upload-image';
 import { queryClient } from '@/lib/react-query';
 import { supabase } from '@/lib/supabase';
 
@@ -18,37 +17,37 @@ export const updateUserFn = async ({
 }: updateUserDataProps) => {
   if (!userID) return null;
   let newData = {};
-  let avatar_image_url = '';
-  let background_image_url = '';
+  const avatar_image_url = '';
+  const background_image_url = '';
 
   // if user updated their avatar image
-  if (updatedData.avatar_image && updatedData.avatar_image.length > 0) {
-    const imageFile = updatedData.avatar_image.item(0);
-    const imageName = `avatar_img_${updatedData.username}_${Date.now()}_${imageFile?.name}`;
-    avatar_image_url = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/user_images/${imageName}`;
+  // if (updatedData.avatar_image && updatedData.avatar_image.length > 0) {
+  //   const imageFile = updatedData.avatar_image.item(0);
+  //   const imageName = `avatar_img_${updatedData.username}_${Date.now()}_${imageFile?.name}`;
+  //   avatar_image_url = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/user_images/${imageName}`;
 
-    if (!imageFile) return;
-    await uploadImage({
-      image: imageFile,
-      imageName,
-      bucketName: 'user_images',
-    });
-  }
+  //   if (!imageFile) return;
+  //   await uploadImage({
+  //     image: imageFile,
+  //     imageName,
+  //     bucketName: 'user_images',
+  //   });
+  // }
 
   // if user updated their avatar image
-  if (updatedData.background_image && updatedData.background_image.length > 0) {
-    const imageFile = updatedData.background_image.item(0);
-    const imageName = `bg_img_${updatedData.username}_${Date.now()}_${imageFile?.name}`;
+  // if (updatedData.background_image && updatedData.background_image.length > 0) {
+  //   const imageFile = updatedData.background_image.item(0);
+  //   const imageName = `bg_img_${updatedData.username}_${Date.now()}_${imageFile?.name}`;
 
-    background_image_url = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/user_images/${imageName}`;
-    if (!imageFile) return;
+  //   background_image_url = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/user_images/${imageName}`;
+  //   if (!imageFile) return;
 
-    await uploadImage({
-      image: imageFile,
-      imageName,
-      bucketName: 'user_images',
-    });
-  }
+  //   await uploadImage({
+  //     image: imageFile,
+  //     imageName,
+  //     bucketName: 'user_images',
+  //   });
+  // }
 
   newData = {
     avatar_image: avatar_image_url || updatedData.avatar_image,

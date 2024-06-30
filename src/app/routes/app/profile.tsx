@@ -36,7 +36,6 @@ export const ProfileRoute = () => {
           handleEdit={handleModalOpen}
         />
       </div>
-      {/* <div>{JSON.stringify(tweet)}</div> */}
 
       <ModalWrapper isVisible={isModalOpen}>
         <UserModal userData={userData} onClose={handleModalClose} />

@@ -2,6 +2,7 @@ import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { Edit } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton/skeleton';
 import { useUser } from '@/features/auth/api/get-current-user';
 import { useGetUserData } from '@/features/user/api/get-user-data';
 import { formatNumber } from '@/utils/formatNumbers';
@@ -29,15 +30,23 @@ export const UserHeader = ({ userID, handleEdit }: UserHeaderProps) => {
   return (
     <div className="relative -mb-14 grid grid-cols-1 items-center gap-0 rounded-md bg-white px-4 shadow-md md:-top-10 md:grid-cols-[160px,1fr,130px] md:flex-row md:items-stretch md:gap-8">
       <div className="-mb-6 md:mb-0">
-        <Avatar>
-          <AvatarImage
-            src={avatar_image}
-            className="relative -top-10 mx-auto size-20 rounded-md border-4 border-white bg-gray-500 object-cover object-center
+        {avatar_image ? (
+          <Avatar>
+            <AvatarImage
+              src={avatar_image}
+              className="relative -top-10 mx-auto size-20 rounded-md border-4 border-white bg-gray-500 object-cover object-center
  shadow-md md:-top-12 md:mx-0 md:size-40
         "
-          />
-        </Avatar>
+            />
+          </Avatar>
+        ) : (
+          <Skeleton
+            className="relative -top-10 mx-auto size-20 rounded-md border-4 border-white object-cover object-center
+ shadow-md md:-top-12 md:mx-0 md:size-40"
+          ></Skeleton>
+        )}
       </div>
+
       <div className="flex flex-col justify-center md:gap-y-6">
         <div className="mb-5 flex flex-col items-center justify-center gap-2 text-center md:mb-0 md:flex-row md:justify-start md:gap-10  md:text-left">
           {/* user's first and last name and username */}

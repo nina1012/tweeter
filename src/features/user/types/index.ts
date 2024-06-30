@@ -22,8 +22,8 @@ export type User = {
 // these types for avatar and bg image are different type than User type
 
 export type UpdatedUser = {
-  avatar_image: FileList | null;
-  background_image: FileList | null;
+  avatar_image?: string;
+  background_image?: string;
   bio?: string;
   username?: string;
 };
