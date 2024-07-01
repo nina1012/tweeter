@@ -27,6 +27,7 @@ export const editUserProfileSchema = z.object({
 
 export const UserModal = ({ userData, onClose }: UserModalProps) => {
   const { updateUser } = useUpdateUserData();
+
   return (
     <motion.div
       initial={{

@@ -28,7 +28,7 @@ export const updateUserFn = async ({
     updatedData.avatar_image?.length &&
     isFileList(updatedData.avatar_image)
   ) {
-    avatarFile = updatedData.avatar_image?.item(0);
+    avatarFile = updatedData.avatar_image?.item(0); // grabs the first item from FileList
     if (avatarFile) {
       // find the type of the image : .png, .gif, .jpeg ....
       const fileType = avatarFile.type.split('/').at(1);
@@ -36,6 +36,7 @@ export const updateUserFn = async ({
       const avatarImageName = `avatar_img_${Date.now()}.${fileType}`;
       avatar_image_url = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/user_images/${avatarImageName}`;
 
+      // uploading image to bucket
       await uploadImage({
         image: avatarFile,
         imageName: avatarImageName,

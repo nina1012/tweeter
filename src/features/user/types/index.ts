@@ -20,12 +20,11 @@ export type User = {
 
 //  testing
 // these types for avatar and bg image are different type than User type
-
-// export type Format = FileListT | StringT;
+// FileList because of the input type="file"
 
 export type UpdatedUser = {
-  avatar_image: string | FileList | undefined;
-  background_image: string | FileList | undefined;
+  avatar_image?: string | FileList;
+  background_image?: string | FileList;
   bio?: string;
   username?: string;
 };
