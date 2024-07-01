@@ -19,8 +19,8 @@ export type UserModalProps = {
 };
 
 export const editUserProfileSchema = z.object({
-  background_image: z.instanceof(FileList).optional(),
-  avatar_image: z.instanceof(FileList).optional(),
+  background_image: z.instanceof(FileList),
+  avatar_image: z.instanceof(FileList),
   username: z.string(),
   bio: z.string(),
 });
@@ -42,10 +42,32 @@ export const UserModal = ({ userData, onClose }: UserModalProps) => {
     >
       <div className="mx-5 w-full max-w-xl rounded-md border-[0.5px] border-gray-500/5 bg-white p-6 shadow-md md:mx-32">
         <Form
-          onSubmit={(values: UpdatedUser) => {
+          onSubmit={(values: Partial<UpdatedUser | User>) => {
             // TO DO update user's info
-            console.log(values);
-            updateUser(values);
+            let avatarUrl, backgroundUrl;
+            // if user didn't update info, keep the old avatar image
+            if (values.avatar_image && values.avatar_image.length === 0) {
+              avatarUrl = userData?.avatar_image;
+            }
+            // if user didn't update info, keep the old background image
+            if (
+              values.background_image &&
+              values.background_image?.length === 0
+            ) {
+              backgroundUrl = userData?.background_image;
+            }
+
+            updateUser({
+              avatar_image: values.avatar_image
+                ? values.avatar_image
+                : avatarUrl,
+              background_image: values.background_image
+                ? values.background_image
+                : backgroundUrl,
+              bio: values.bio,
+              username: values.username,
+            });
+            onClose();
           }}
           schema={editUserProfileSchema}
           options={{

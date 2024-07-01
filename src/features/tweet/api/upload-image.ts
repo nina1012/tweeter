@@ -15,11 +15,10 @@ export const uploadImage = async ({
   const { data, error } = await supabase.storage
     .from(bucketName)
     .upload(imageName, image, {
-      contentType: image.type,
+      contentType: image?.type,
     });
 
   if (error) throw new Error(error.message);
 
-  console.log(data);
   return data;
 };

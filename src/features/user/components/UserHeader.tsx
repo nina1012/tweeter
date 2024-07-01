@@ -34,7 +34,7 @@ export const UserHeader = ({ userID, handleEdit }: UserHeaderProps) => {
           <Avatar>
             <AvatarImage
               src={avatar_image}
-              className="relative -top-10 mx-auto size-20 rounded-md border-4 border-white bg-gray-500 object-cover object-center
+              className="relative -top-10 mx-auto size-20 rounded-md border-4 border-white bg-white object-cover object-center
  shadow-md md:-top-12 md:mx-0 md:size-40
         "
             />
