@@ -7,3 +7,27 @@ export function formatNumber(num: number) {
     return num.toString();
   }
 }
+
+export function formatDate(date: Date) {
+  const Months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const publishingDate = new Date(date);
+  const publishingText = `${publishingDate.getDate()} ${
+    Months[publishingDate.getMonth()]
+  } at ${publishingDate.getHours()}:${publishingDate.getMinutes()}`;
+
+  return publishingText;
+}

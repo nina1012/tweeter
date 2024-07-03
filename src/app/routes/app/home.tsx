@@ -1,3 +1,4 @@
+import { HomeTweetsContainer } from '@/features/tweet/components/HomeTweetsContainer';
 import { PublishTweet } from '@/features/tweet/components/PublishTweet';
 
 export const HomeFeedRoute = () => {
@@ -6,7 +7,7 @@ export const HomeFeedRoute = () => {
       {/* main content */}
       <div>
         <PublishTweet />
-        <div>Home tweet container that contains the most recent tweets</div>
+        <HomeTweetsContainer />
       </div>
       {/* side content */}
       <div>
