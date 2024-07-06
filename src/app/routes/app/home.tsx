@@ -1,4 +1,4 @@
-import { HomeTweetsContainer } from '@/features/tweet/components/HomeTweetsContainer';
+import { HomeTweets } from '@/features/tweet/components/HomeTweets';
 import { PublishTweet } from '@/features/tweet/components/PublishTweet';
 
 export const HomeFeedRoute = () => {
@@ -7,7 +7,7 @@ export const HomeFeedRoute = () => {
       {/* main content */}
       <div>
         <PublishTweet />
-        <HomeTweetsContainer />
+        <HomeTweets />
       </div>
       {/* side content */}
       <div>

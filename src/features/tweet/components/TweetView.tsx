@@ -1,28 +1,36 @@
-import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { motion } from 'framer-motion';
 import { memo } from 'react';
-import { Link } from 'react-router-dom';
 
-import { useUser } from '@/features/auth/api/get-current-user';
 import { useGetUserData } from '@/features/user/api/get-user-data';
-import { formatDate } from '@/utils/formatNumbers';
+import { formatNumber } from '@/utils/formatNumbers';
 
 import { Tweet } from '../types';
+
+import { TweetHeader } from './TweetHeader';
 
 export type TweetViewProps = {
   tweet: Tweet;
 };
 
+// this component will not be rerendered even its' parent rerender, as long as it get the same props.
 export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
   const { userData } = useGetUserData(tweet.author_id);
-  const { user: currentUser } = useUser();
 
   if (!tweet) return;
   if (!userData) return;
-  const { avatar_image, user_id, firstName, lastName } = userData;
-  const isCurrentUser: boolean = currentUser?.id === userData.user_id;
+  const {
+    is_reply,
+    content,
+    replies,
+    image,
+    is_retweet,
+    likes,
+    retweets,
+    saves,
+  } = tweet;
+
   return (
-    <motion.div
+    <motion.article
       initial={{
         opacity: 0,
       }}
@@ -35,36 +43,42 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
       className="rounded-md bg-white p-8 shadow-md"
     >
       {/* tweet header */}
-      <div className="mb-20 grid grid-cols-[4rem,1fr] grid-rows-[auto,auto] gap-x-5">
-        {/* avatar cont */}
-        <div className="size-full">
-          {!avatar_image ? (
-            <Avatar>
-              <AvatarImage
-                className="size-10 rounded-md"
-                src={userData?.avatar_image}
-              />
-            </Avatar>
-          ) : (
-            <div className="size-full rounded-md bg-gray-200"></div>
-          )}
-        </div>
-        <div>
-          <div className="flex justify-between">
-            {/* username */}
-            <Link
-              to={`/app/${user_id}/`}
-              className="w-fit cursor-pointer text-lg font-medium tracking-tight no-underline underline-offset-4 transition-all hover:text-gray-400 hover:underline"
-            >
-              {firstName + ' ' + lastName}
-            </Link>
-            {isCurrentUser && <div>options...</div>}
-          </div>
-          <p className="text-xs font-medium tracking-tight text-gray-400">
-            {formatDate(tweet.created_at)}
+      <TweetHeader tweet={tweet} />
+      {/* tweet content */}
+      <div>
+        {is_reply && <div>Original tweet should be rendered</div>}
+        {content && (
+          <p className="mb-8 mt-6 text-base font-normal leading-6 tracking-tight text-gray-600">
+            {tweet.content}
           </p>
-        </div>
+        )}
+        {image && (
+          <img
+            className="mb-5 h-auto w-full rounded-md"
+            src={image as unknown as string}
+            alt="not avaiable at the moment"
+          />
+        )}
       </div>
-    </motion.div>
+      {/* retweet */}
+      {is_retweet && <div>Render the original tweet that user retweeted</div>}
+      {/* tweet statistics */}
+      <div className="mb-1 flex justify-end gap-6 border-b-[.5px] border-b-gray-200 pb-3">
+        <p className="text-xs font-normal tracking-tight text-gray-400">
+          {formatNumber(likes.length)} likes
+        </p>
+        <p className="text-xs font-normal tracking-tight text-gray-400">
+          {formatNumber(replies.length)} replies
+        </p>
+        <p className="text-xs font-normal tracking-tight text-gray-400">
+          {formatNumber(retweets.length)} retweets
+        </p>
+        <p className="text-xs font-normal tracking-tight text-gray-400">
+          {formatNumber(saves.length)} saved
+        </p>
+      </div>
+      {/* tweet button */}
+      <div></div>
+    </motion.article>
   );
 });
