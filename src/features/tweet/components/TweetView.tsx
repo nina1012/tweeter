@@ -6,6 +6,7 @@ import { formatNumber } from '@/utils/formatNumbers';
 
 import { Tweet } from '../types';
 
+import { TweetButtons } from './TweetButtons';
 import { TweetHeader } from './TweetHeader';
 
 export type TweetViewProps = {
@@ -78,7 +79,7 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
         </p>
       </div>
       {/* tweet button */}
-      <div></div>
+      <TweetButtons tweet={tweet} />
     </motion.article>
   );
 });

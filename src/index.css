@@ -6,6 +6,13 @@
   .container {
     @apply px-5 md:px-32 lg:px-40 w-full;
   }
+
+  .tweet-button {
+    @apply flex justify-center w-full;
+  }
+  .tweet-button-icon {
+    @apply ml-2 hidden md:inline-block;
+  }
 }
 
 @layer base {
