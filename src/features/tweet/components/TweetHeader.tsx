@@ -16,19 +16,17 @@ export const TweetHeader = ({ tweet }: TweetHeaderProps) => {
   const { user: currentUser } = useUser();
 
   if (!userData) return;
+
   const { avatar_image, user_id, firstName, lastName } = userData;
   const isCurrentUser: boolean = currentUser?.id === userData.user_id;
 
   return (
-    <div className="mb-2 grid grid-cols-[3.5rem,1fr] grid-rows-[auto,auto] gap-x-2">
+    <div className="mb-2 grid grid-cols-[3.5rem,1fr] grid-rows-[auto,auto]">
       {/* avatar container */}
       <div className="size-full">
         {avatar_image ? (
-          <Avatar>
-            <AvatarImage
-              className="size-10 rounded-md"
-              src={userData?.avatar_image}
-            />
+          <Avatar className="rounded-md">
+            <AvatarImage className="size-10" src={userData?.avatar_image} />
           </Avatar>
         ) : (
           <div className="size-full rounded-md bg-gray-200"></div>

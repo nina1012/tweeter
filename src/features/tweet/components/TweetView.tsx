@@ -13,7 +13,7 @@ export type TweetViewProps = {
   tweet: Tweet;
 };
 
-// this component will not be rerendered even its' parent rerender, as long as it get the same props.
+// this component will not be rerendered even its' parent rerender, as long as it gets the same props
 export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
   const { userData } = useGetUserData(tweet.author_id);
 
@@ -47,7 +47,7 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
       <TweetHeader tweet={tweet} />
       {/* tweet content */}
       <div>
-        {is_reply && <div>Original tweet should be rendered</div>}
+        {is_reply && <div>Original tweet goes here...</div>}
         {content && (
           <p className="mb-8 mt-6 text-base font-normal leading-6 tracking-tight text-gray-600">
             {tweet.content}
@@ -62,7 +62,7 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
         )}
       </div>
       {/* retweet */}
-      {is_retweet && <div>Render the original tweet that user retweeted</div>}
+      {is_retweet && <div>Original tweet that user retweeted goes here...</div>}
       {/* tweet statistics */}
       <div className="mb-1 flex justify-end gap-6 border-b-[.5px] border-b-gray-200 pb-3">
         <p className="text-xs font-normal tracking-tight text-gray-400">

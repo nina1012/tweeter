@@ -8,10 +8,10 @@
   }
 
   .tweet-button {
-    @apply flex justify-center w-full;
+    @apply flex justify-center w-full text-gray-700;
   }
   .tweet-button-icon {
-    @apply ml-2 hidden md:inline-block;
+    @apply ml-2 hidden md:inline-block text-gray-700;
   }
 }
 
