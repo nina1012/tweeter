@@ -1,24 +1,31 @@
 import { Link } from 'react-router-dom';
 
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { TweetHeaderSkeleton } from '@/components/ui/skeleton/tweet/TweetHeaderSketeon';
 import { useUser } from '@/features/auth/api/get-current-user';
 import { useGetUserData } from '@/features/user/api/get-user-data';
 import { formatDate } from '@/utils/formatNumbers';
 
 import { Tweet } from '../types';
 
+import { TweetOptions } from './TweetOptions';
+
 type TweetHeaderProps = {
   tweet: Tweet;
 };
 
 export const TweetHeader = ({ tweet }: TweetHeaderProps) => {
-  const { userData } = useGetUserData(tweet.author_id);
+  const { userData, isLoadingUserData } = useGetUserData(tweet.author_id);
   const { user: currentUser } = useUser();
 
   if (!userData) return;
 
   const { avatar_image, user_id, firstName, lastName } = userData;
   const isCurrentUser: boolean = currentUser?.id === userData.user_id;
+
+  if (isLoadingUserData) {
+    return <TweetHeaderSkeleton />;
+  }
 
   return (
     <div className="mb-2 grid grid-cols-[3.5rem,1fr] grid-rows-[auto,auto]">
@@ -42,7 +49,9 @@ export const TweetHeader = ({ tweet }: TweetHeaderProps) => {
           >
             {firstName + ' ' + lastName}
           </Link>
-          {isCurrentUser && <div>options...</div>}
+          {/* only author can edit/delete their own tweets */}
+          {/* show options */}
+          {isCurrentUser && <TweetOptions tweet={tweet} />}
         </div>
         {/* date of creation */}
         <p className="text-xs font-medium tracking-tight text-gray-400">
