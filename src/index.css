@@ -13,6 +13,9 @@
   .tweet-button-icon {
     @apply ml-2 hidden md:inline-block text-gray-700;
   }
+  .heading3 {
+    @apply mb-3 border-b-[0.1rem] border-b-gray-200 pb-2 text-xs font-semibold tracking-tighter text-gray-700;
+  }
 }
 
 @layer base {

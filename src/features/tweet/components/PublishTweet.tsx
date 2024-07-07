@@ -51,13 +51,13 @@ export const PublishTweet = () => {
 
   return (
     <div className="mb-10 w-full rounded-md bg-white px-5 py-2 shadow-md">
-      <h3 className="mb-3 border-b-[0.1rem] border-b-gray-200 pb-2 text-xs font-semibold tracking-tighter text-gray-700">
-        Tweet something
-      </h3>
+      <h3 className="heading3">Tweet something</h3>
       <Form
-        onSubmit={(values) => {
+        // destructuring content and image because of the type error
+        onSubmit={({ content, image }: Pick<Tweet, 'content' | 'image'>) => {
           const tweet: Tweet = {
-            ...values,
+            content,
+            image,
             likes: [],
             saves: [],
             is_reply: false,
@@ -68,7 +68,6 @@ export const PublishTweet = () => {
             author_id: user.id,
             hashtags: [],
           };
-          console.log(values, tweet.image);
 
           createTweet(tweet);
         }}

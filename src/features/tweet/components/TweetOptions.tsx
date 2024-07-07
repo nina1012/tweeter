@@ -7,6 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useNotifications } from '@/components/ui/notifications';
 
 import { useDeleteTweet } from '../api/delete-tweet';
 import { Tweet } from '../types';
@@ -16,6 +17,7 @@ export type TweetOptionsProps = {
 };
 export const TweetOptions = ({ tweet }: TweetOptionsProps) => {
   const { removeTweet } = useDeleteTweet();
+  const { addNotification } = useNotifications();
 
   return (
     <DropdownMenu>
@@ -29,6 +31,11 @@ export const TweetOptions = ({ tweet }: TweetOptionsProps) => {
             removeTweet({
               tweetID: tweet.tweet_id,
               originalAuthorID: tweet.original_author_id,
+            });
+            addNotification({
+              title: 'Deleted tweet',
+              type: 'success',
+              message: 'You successfully deleted a tweet',
             });
           }}
           className="text-red-500"

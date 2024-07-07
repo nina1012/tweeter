@@ -25,9 +25,17 @@ export function formatDate(date: Date) {
   ];
 
   const publishingDate = new Date(date);
+  // if hour or minutes are less than 10, put 0 in front of them
+  const hours =
+    publishingDate.getHours() < 10
+      ? `0${publishingDate.getHours()}`
+      : publishingDate.getHours();
+  const minutes =
+    publishingDate.getMinutes() < 10
+      ? `0${publishingDate.getMinutes()}`
+      : publishingDate.getMinutes();
   const publishingText = `${publishingDate.getDate()} ${
     Months[publishingDate.getMonth()]
-  } at ${publishingDate.getHours()}:${publishingDate.getMinutes()}`;
-
+  } at ${hours}:${minutes}`;
   return publishingText;
 }
