@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabase';
 
 import { Tweet } from '../types';
 
-export const getAllTweets = async (): Promise<Tweet[] | null> => {
+export const getAllTweetsFn = async (): Promise<Tweet[] | null> => {
   const { data, error } = await supabase.from('tweets').select();
   if (error) throw new Error(error.message);
   return data;
@@ -17,7 +17,7 @@ export const useAllTweets = () => {
     error: userDataError,
   } = useQuery({
     queryKey: ['tweets'],
-    queryFn: () => getAllTweets(),
+    queryFn: () => getAllTweetsFn(),
   });
 
   return { tweets, isLoadingTweets, userDataError };

@@ -8,6 +8,8 @@ import { Tweet } from '../types';
 
 import { TweetButtons } from './TweetButtons';
 import { TweetHeader } from './TweetHeader';
+import { TweetReply } from './TweetReply';
+import { TweetRetweet } from './TweetRetweet';
 
 export type TweetViewProps = {
   tweet: Tweet;
@@ -28,6 +30,8 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
     likes,
     retweets,
     saves,
+    original_author_id,
+    original_tweet_id,
   } = tweet;
 
   return (
@@ -47,7 +51,12 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
       <TweetHeader tweet={tweet} />
       {/* tweet content */}
       <div>
-        {is_reply && <div>Original tweet goes here...</div>}
+        {is_reply && (
+          <TweetReply
+            originalAuthorID={original_author_id as string}
+            originalTweetID={original_tweet_id as string}
+          />
+        )}
         {content && (
           <p className="mb-8 mt-6 text-base font-normal leading-6 tracking-tight text-gray-600">
             {tweet.content}
@@ -62,7 +71,12 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
         )}
       </div>
       {/* retweet */}
-      {is_retweet && <div>Original tweet that user retweeted goes here...</div>}
+      {is_retweet && (
+        <TweetRetweet
+          originalAuthorID={original_author_id as string}
+          originalTweetID={original_tweet_id as string}
+        />
+      )}
       {/* tweet statistics */}
       <div className="mb-1 flex justify-end gap-6 border-b-[.5px] border-b-gray-200 pb-3">
         <p className="text-xs font-normal tracking-tight text-gray-400">
