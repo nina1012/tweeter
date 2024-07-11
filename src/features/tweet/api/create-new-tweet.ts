@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase';
 
 import { Tweet } from '../types';
 
-import { uploadImage } from './upload-image';
+import { uploadImage } from './tweet-images-func';
 
 export type useCreateTweetOptions = {
   onSuccess?: () => void;
@@ -60,7 +60,7 @@ export const useCreateTweet = ({
 
   const {
     mutate: createTweet,
-    isPending: creatingTweet,
+    isPending: isCreatingTweet,
     error: errorCreateTweet,
   } = useMutation({
     mutationFn: (newTweet: Tweet) =>
@@ -78,5 +78,5 @@ export const useCreateTweet = ({
     },
   });
 
-  return { createTweet, creatingTweet, errorCreateTweet };
+  return { createTweet, isCreatingTweet, errorCreateTweet };
 };

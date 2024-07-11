@@ -1,7 +1,7 @@
 import { InvalidateQueryFilters, useMutation } from '@tanstack/react-query';
 
 import { useUser } from '@/features/auth/api/get-current-user';
-import { uploadImage } from '@/features/tweet/api/upload-image';
+import { uploadImage } from '@/features/tweet/api/tweet-images-func';
 import { queryClient } from '@/lib/react-query';
 import { supabase } from '@/lib/supabase';
 import { isFileList } from '@/utils/isFileList';

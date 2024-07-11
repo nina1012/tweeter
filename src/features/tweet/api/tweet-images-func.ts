@@ -22,3 +22,22 @@ export const uploadImage = async ({
 
   return data;
 };
+
+type deleteImageProps = {
+  imageURL: string;
+  bucketName: string;
+};
+
+export const deleteImage = async ({
+  imageURL,
+  bucketName,
+}: deleteImageProps) => {
+  const imageName = imageURL.split(`/${bucketName}/`)[1];
+
+  const { data, error } = await supabase.storage
+    .from(bucketName)
+    .remove([imageName]);
+  if (error) throw new Error(error.message);
+  console.log('deleting image....', data, imageName);
+  return data;
+};

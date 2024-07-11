@@ -4,6 +4,8 @@ import { useUser } from '@/features/auth/api/get-current-user';
 import { queryClient } from '@/lib/react-query';
 import { supabase } from '@/lib/supabase';
 
+import { deleteImage } from './tweet-images-func';
+
 export const deleteTweet = async ({
   tweetID,
   originalAuthorID,
@@ -19,7 +21,11 @@ export const deleteTweet = async ({
   if (error) throw new Error(error.message);
   //   this function returns an array of deleted tweets in this format, but I kept this function returning void to not deal with new types :)
   // { "deleted_tweet_id": "deleted_tweet_id", "deleted_author_id": "deleted_author_id,"deleted_content": "deleted_content", "deleted_image": "","deleted_created_at":"deleted_created_at"}
+
+  // delete image from tweet_images bucket
+  const { deleted_image } = data[0];
   console.log(data[0], ' deleted tweet');
+  deleteImage({ imageURL: deleted_image, bucketName: 'tweet_images' });
 };
 
 type DeleteTweetVariables = {

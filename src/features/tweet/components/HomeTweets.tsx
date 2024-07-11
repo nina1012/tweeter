@@ -1,3 +1,5 @@
+import { HomeSkeleton } from '@/components/ui/skeleton/home/HomeSkeleton';
+
 import { useAllTweets } from '../api/get-all-tweets';
 
 import { TweetView } from './TweetView';
@@ -5,7 +7,7 @@ import { TweetView } from './TweetView';
 export const HomeTweets = () => {
   const { tweets, isLoadingTweets } = useAllTweets();
   if (isLoadingTweets) {
-    return <div>home skeleton goes here...</div>;
+    return <HomeSkeleton />;
   }
   return (
     <div className="flex flex-col justify-start gap-9">

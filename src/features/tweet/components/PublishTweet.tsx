@@ -28,7 +28,7 @@ export const PublishTweet = () => {
   const { userData, isLoadingUserData } = useGetUserData(user?.id as string);
   const { addNotification } = useNotifications();
 
-  const { createTweet, creatingTweet } = useCreateTweet({
+  const { createTweet, isCreatingTweet } = useCreateTweet({
     onSuccess: () => {
       addNotification({
         title: 'Tweet is created',
@@ -110,8 +110,12 @@ export const PublishTweet = () => {
                   </label>
                 </div>
                 <div>
-                  <Button type="submit" className="min-w-28">
-                    {creatingTweet ? (
+                  <Button
+                    disabled={isCreatingTweet}
+                    type="submit"
+                    className="min-w-28"
+                  >
+                    {isCreatingTweet ? (
                       <>
                         <Spinner className="mr-2 text-white" size="sm" />{' '}
                         <span>tweeting</span>
