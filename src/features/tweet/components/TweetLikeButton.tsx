@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useUser } from '@/features/auth/api/get-current-user';
 
-import { useLikeTweet } from '../api/like-tweet';
+import { useLikeTweet, useUnlikeTweet } from '../api/like-unlike-tweet';
 import { Tweet } from '../types';
 export type TweetLikeButtonProps = {
   tweet: Tweet;
@@ -13,11 +13,13 @@ export type TweetLikeButtonProps = {
 
 export const TweetLikeButton = ({ tweet }: TweetLikeButtonProps) => {
   const { user } = useUser();
-  const { likeTweet } = useLikeTweet();
 
   const [isLiked, setIsLiked] = useState<boolean>(
-    !!user && tweet.likes.includes(user?.id),
+    !!user?.id && tweet.likes.includes(user.id as string),
   );
+
+  const { likeTweet } = useLikeTweet();
+  const { unlikeTweet } = useUnlikeTweet();
 
   const handleLike = () => {
     likeTweet({
@@ -25,10 +27,12 @@ export const TweetLikeButton = ({ tweet }: TweetLikeButtonProps) => {
       userID: user?.id as string,
     });
     setIsLiked(true);
-    console.log('liked');
   };
   const handleUnlike = () => {
-    console.log('unliked');
+    unlikeTweet({
+      tweetID: tweet.tweet_id as string,
+      userID: user?.id as string,
+    });
     setIsLiked(false);
   };
   return (

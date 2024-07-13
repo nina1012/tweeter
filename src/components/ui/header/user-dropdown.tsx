@@ -89,10 +89,10 @@ export const UserDropdown = () => {
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="flex gap-2">
+        <DropdownMenuItem className="flex !w-full gap-2">
           <Button
             variant="ghost"
-            className="flex gap-3 px-1"
+            className="flex w-full justify-start gap-3 px-1"
             onClick={() => logout()}
           >
             <LogOut color="#d11f1f" strokeWidth={1.5} />
