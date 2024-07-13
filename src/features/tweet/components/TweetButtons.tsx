@@ -1,21 +1,19 @@
-import { Bookmark, Heart, MessageSquare, Repeat2 } from 'lucide-react';
+import { Bookmark, MessageSquare, Repeat2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
 import { Tweet } from '../types';
+
+import { TweetLikeButton } from './TweetLikeButton';
 
 type TweetButtonsProps = {
   tweet: Tweet;
 };
 export const TweetButtons = ({ tweet }: TweetButtonsProps) => {
   //  for now, only UI is done, I will implement actions
-  console.log(tweet);
   return (
     <div className="mb-3 flex justify-between gap-3 border-b-[.5px] border-b-gray-200 pb-1 text-gray-700">
-      <Button variant="ghost" className="tweet-button">
-        <Heart />
-        <span className="tweet-button-icon">Liked</span>
-      </Button>
+      <TweetLikeButton tweet={tweet} />
       <Button variant="ghost" className="tweet-button ">
         <Repeat2 />
         <span className="tweet-button-icon">Retweeted</span>
