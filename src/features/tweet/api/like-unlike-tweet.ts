@@ -17,7 +17,7 @@ export const likeTweetFn = async (
   });
 
   if (error) {
-    throw error;
+    throw new Error(error.message);
   }
 
   return data;
@@ -63,7 +63,7 @@ export const unlikeTweetFn = async (
   });
 
   if (error) {
-    throw error;
+    throw new Error(error.message);
   }
 
   return data;
