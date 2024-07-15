@@ -26,28 +26,31 @@ export const TweetLikeButton = ({ tweet }: TweetLikeButtonProps) => {
   const { likeTweet } = useLikeTweet();
   const { unlikeTweet } = useUnlikeTweet();
 
-  const handleLike = () => {
-    likeTweet({
-      tweetID: tweet.tweet_id as string,
-      userID: user?.id as string,
-    });
-    setIsLiked(true);
+  const handleClick = () => {
+    if (!tweet || !user) return;
+    if (isLiked) {
+      unlikeTweet({
+        tweetID: tweet.tweet_id as string,
+        userID: user?.id as string,
+      });
+      setIsLiked(false);
+    } else {
+      likeTweet({
+        tweetID: tweet.tweet_id as string,
+        userID: user?.id as string,
+      });
+      setIsLiked(true);
+    }
   };
-  const handleUnlike = () => {
-    unlikeTweet({
-      tweetID: tweet.tweet_id as string,
-      userID: user?.id as string,
-    });
-    setIsLiked(false);
-  };
+
   return (
     <Button
       variant="ghost"
       className={clsx(isLiked && 'text-red-500', 'tweet-button')}
-      onClick={isLiked ? handleUnlike : handleLike}
+      onClick={handleClick}
     >
       <Heart />
-      <span className="tweet-button-icon">Liked</span>
+      <span className="tweet-button-icon">{isLiked ? 'Liked' : 'Like'}</span>
     </Button>
   );
 };
