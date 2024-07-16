@@ -7,7 +7,7 @@ export type Tweet = {
   is_reply: boolean;
   replies: [];
   hashtags: [];
-  retweets: [];
+  retweets: string[];
   is_retweet: boolean;
   created_at: Date;
   author_id: string;

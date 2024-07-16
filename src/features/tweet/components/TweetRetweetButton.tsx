@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { Repeat2 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { useUser } from '@/features/auth/api/get-current-user';
@@ -13,8 +13,13 @@ export type TweetRetweetButtonProps = {
 
 export const TweetRetweetButton = ({ tweet }: TweetRetweetButtonProps) => {
   const { user } = useUser();
-  const [isRetweeted, setIsRetweeted] = useState<boolean>(tweet.is_retweet);
+  const [isRetweeted, setIsRetweeted] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (user && tweet && tweet.retweets) {
+      setIsRetweeted(tweet.retweets.includes(user.id));
+    }
+  }, [user, tweet]);
   const { addRetweet } = useAddRetweet();
   const { removeRetweet } = useRemoveRetweet();
 

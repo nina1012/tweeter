@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { Repeat2 } from 'lucide-react';
 import { memo } from 'react';
 
+// import { useUser } from '@/features/auth/api/get-current-user';
 import { useGetUserData } from '@/features/user/api/get-user-data';
 import { formatNumber } from '@/utils/formatNumbers';
 
@@ -9,7 +11,7 @@ import { Tweet } from '../types';
 import { TweetButtons } from './TweetButtons';
 import { TweetHeader } from './TweetHeader';
 import { TweetReply } from './TweetReply';
-import { TweetRetweet } from './TweetRetweet';
+// import { TweetRetweet } from './TweetRetweet';
 
 export type TweetViewProps = {
   tweet: Tweet;
@@ -17,6 +19,7 @@ export type TweetViewProps = {
 
 // this component will not be rerendered even its' parent rerender, as long as it gets the same props
 export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
+  // const { user } = useUser();
   const { userData } = useGetUserData(tweet.author_id);
 
   if (!tweet) return;
@@ -47,6 +50,12 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
       }}
       className="rounded-md bg-white p-8 shadow-md"
     >
+      {is_retweet && (
+        <p className="mb-4 flex items-center gap-2 text-xs text-gray-500">
+          <Repeat2 />
+          You retweeted
+        </p>
+      )}
       {/* tweet header */}
       <TweetHeader tweet={tweet} />
       {/* tweet content */}
@@ -71,12 +80,12 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
         )}
       </div>
       {/* retweet */}
-      {is_retweet && (
+      {/* {is_retweet && (
         <TweetRetweet
-          originalAuthorID={original_author_id as string}
+          originalAuthorID={user?.id as string}
           originalTweetID={original_tweet_id as string}
         />
-      )}
+      )} */}
       {/* tweet statistics */}
       <div className="mb-1 flex justify-end gap-6 border-b-[.5px] border-b-gray-200 pb-3">
         <p className="text-xs font-normal tracking-tight text-gray-400">
