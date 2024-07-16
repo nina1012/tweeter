@@ -59,7 +59,7 @@ export const PublishTweet = () => {
             content,
             image,
             likes: [],
-            saves: [],
+            bookmarks: [],
             is_reply: false,
             replies: [],
             retweets: [],

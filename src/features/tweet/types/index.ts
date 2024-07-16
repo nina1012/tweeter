@@ -2,7 +2,7 @@ export type Tweet = {
   tweet_id?: string;
   image?: FileList;
   likes: string[];
-  saves: [];
+  bookmarks: string[];
   content: string;
   is_reply: boolean;
   replies: [];

@@ -13,12 +13,12 @@ import { TweetHeader } from './TweetHeader';
 import { TweetReply } from './TweetReply';
 // import { TweetRetweet } from './TweetRetweet';
 
-export type TweetViewProps = {
+export type TweetCardProps = {
   tweet: Tweet;
 };
 
 // this component will not be rerendered even its' parent rerender, as long as it gets the same props
-export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
+export const TweetCard = memo(function TweetView({ tweet }: TweetCardProps) {
   // const { user } = useUser();
   const { userData } = useGetUserData(tweet.author_id);
 
@@ -32,7 +32,7 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
     is_retweet,
     likes,
     retweets,
-    saves,
+    bookmarks,
     original_author_id,
     original_tweet_id,
   } = tweet;
@@ -51,7 +51,7 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
       className="rounded-md bg-white p-8 shadow-md"
     >
       {is_retweet && (
-        <p className="mb-4 flex items-center gap-2 text-xs text-gray-500">
+        <p className="mb-2 flex items-center gap-1 text-xs text-gray-400">
           <Repeat2 />
           You retweeted
         </p>
@@ -98,7 +98,7 @@ export const TweetView = memo(function TweetView({ tweet }: TweetViewProps) {
           {formatNumber(retweets.length)} retweets
         </p>
         <p className="text-xs font-normal tracking-tight text-gray-400">
-          {formatNumber(saves.length)} saved
+          {formatNumber(bookmarks.length)} saved
         </p>
       </div>
       {/* tweet button */}

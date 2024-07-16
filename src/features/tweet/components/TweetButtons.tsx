@@ -1,13 +1,14 @@
-import { Bookmark, MessageSquare } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
 import { Tweet } from '../types';
 
+import { TweetBookmarkButton } from './TweetBookmarkButton';
 import { TweetLikeButton } from './TweetLikeButton';
 import { TweetRetweetButton } from './TweetRetweetButton';
 
-type TweetButtonsProps = {
+export type TweetButtonsProps = {
   tweet: Tweet;
 };
 export const TweetButtons = ({ tweet }: TweetButtonsProps) => {
@@ -20,10 +21,7 @@ export const TweetButtons = ({ tweet }: TweetButtonsProps) => {
         <MessageSquare />
         <span className="tweet-button-icon">Reply</span>
       </Button>
-      <Button variant="ghost" className="tweet-button ">
-        <Bookmark />
-        <span className="tweet-button-icon">Saved</span>
-      </Button>
+      <TweetBookmarkButton tweet={tweet} />
     </div>
   );
 };
