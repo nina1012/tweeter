@@ -1,30 +1,73 @@
-# React + TypeScript + Vite
+# Tweeter - A Twitter Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Description
 
-Currently, two official plugins are available:
+Tweeter is a Twitter clone built to replicate the core functionalities of Twitter.
+The design of this app is from [devchallenges.io]('https://legacy.devchallenges.io/challenges/rleoQc34THclWx1cFFKH').
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- User authentication and authorization
+- Create, read, update, and delete tweets
+- Like and retweet tweets
+- Bookmark tweets for later viewing
+- Upload and display images in tweets
+- Follow and unfollow users
+- View user profiles and their tweets
+- Real-time updates with Supabase
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## User Stories
 
-- Configure the top-level `parserOptions` property like this:
+- I can see my profile or others' profile
+- When I am on a profile, I can see Tweets and Retweets. I can also filter by Tweets, Tweets and replies, Media and Likes
+- When I am on a profile, I can see followers and following
+- When I am on a profile, I can see follow or unfollow the user
+- I can navigate between Home, Explore and Bookmarks
+- I can navigate to My Profile, Group Chat (optional), Setting/Authentication App
+- When I am on Home, I can post a new Tweet
+- When I post a new Tweet, I can choose to upload an image and set the Tweet to be public or only-follower
+- When I am on Home, I can see Tweets of people who I follow
+- I can Comment, Retweet, Like or Save a Tweet
+- I can Comment with image and I can like a comment
+- I can see the posted time of the Comments and Tweets
+- When I am on Home, I can see the most popular hashtags and people I should follow (it's up to you how to implement this)
+- When I am on Explore, I can see the Top, Latest Tweet, or Tweet with Media. I can also choose to see the most popular people
+- When I am on Bookmarks, I can see the Saved Tweet
+- (optional): I can search for a group
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Tech Stack
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Frontend:** React, TypeScript, Vite.js, Tailwind CSS, ShadCN UI
+- **Backend:** Supabase (PostgreSQL)
+- **State Management:** React Query, Zustand
+- **Form Management:** React Hook Form
+- **Validation:** Zod
+- **Testing:**
+
+## Installation and Setup
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/nina1012/tweeter.git
+   cd tweeter
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables:**
+
+   ```bash
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+4. **Run the development server:**
+
+   ```bash
+   npm run dev
+   ```
