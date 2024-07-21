@@ -2,16 +2,16 @@ import { motion } from 'framer-motion';
 import { Repeat2 } from 'lucide-react';
 import { memo } from 'react';
 
-// import { useUser } from '@/features/auth/api/get-current-user';
+import { useUser } from '@/features/auth/api/get-current-user';
+import { TweetReply } from '@/features/tweet/components/reply/components/TweetReply';
 import { useGetUserData } from '@/features/user/api/get-user-data';
 import { formatNumber } from '@/utils/formatNumbers';
 
 import { Tweet } from '../types';
 
+import { TweetReplyInput } from './reply/components/TweetReplyInput';
 import { TweetButtons } from './TweetButtons';
 import { TweetHeader } from './TweetHeader';
-import { TweetReply } from './TweetReply';
-// import { TweetRetweet } from './TweetRetweet';
 
 export type TweetCardProps = {
   tweet: Tweet;
@@ -19,7 +19,7 @@ export type TweetCardProps = {
 
 // this component will not be rerendered even its' parent rerender, as long as it gets the same props
 export const TweetCard = memo(function TweetView({ tweet }: TweetCardProps) {
-  // const { user } = useUser();
+  const { user } = useUser();
   const { userData } = useGetUserData(tweet.author_id);
 
   if (!tweet) return;
@@ -50,7 +50,7 @@ export const TweetCard = memo(function TweetView({ tweet }: TweetCardProps) {
       }}
       className="rounded-md bg-white p-8 shadow-md"
     >
-      {is_retweet && (
+      {is_retweet && user && retweets.includes(user?.id) && (
         <p className="mb-2 flex items-center gap-1 text-xs text-gray-400">
           <Repeat2 />
           You retweeted
@@ -103,6 +103,7 @@ export const TweetCard = memo(function TweetView({ tweet }: TweetCardProps) {
       </div>
       {/* tweet button */}
       <TweetButtons tweet={tweet} />
+      <TweetReplyInput tweet={tweet} />
     </motion.article>
   );
 });

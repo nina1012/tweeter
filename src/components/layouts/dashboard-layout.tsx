@@ -6,7 +6,7 @@ export const DashboardLayout = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="relative bg-zinc-100 pt-16">
+    <div className="relative w-full bg-zinc-100 pt-16">
       <Header />
       {children}
     </div>

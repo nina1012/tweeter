@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { Repeat2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { useUser } from '@/features/auth/api/get-current-user';
@@ -13,13 +12,8 @@ export type TweetRetweetButtonProps = {
 
 export const TweetRetweetButton = ({ tweet }: TweetRetweetButtonProps) => {
   const { user } = useUser();
-  const [isRetweeted, setIsRetweeted] = useState<boolean>(false);
+  const isRetweeted = user?.id ? tweet.bookmarks.includes(user?.id) : false;
 
-  useEffect(() => {
-    if (user && tweet && tweet.retweets) {
-      setIsRetweeted(tweet.retweets.includes(user.id));
-    }
-  }, [user, tweet]);
   const { addRetweet } = useAddRetweet();
   const { removeRetweet } = useRemoveRetweet();
 
@@ -27,7 +21,6 @@ export const TweetRetweetButton = ({ tweet }: TweetRetweetButtonProps) => {
     if (!tweet || !user) return;
     if (isRetweeted) {
       removeRetweet({ tweetID: tweet?.tweet_id as string, userID: user?.id });
-      setIsRetweeted(false);
     } else {
       addRetweet({
         tweetID: tweet?.tweet_id as string,
@@ -35,7 +28,6 @@ export const TweetRetweetButton = ({ tweet }: TweetRetweetButtonProps) => {
         originalAuthorID: tweet.original_author_id as string,
         originalTweetID: tweet.original_tweet_id as string,
       });
-      setIsRetweeted(true);
     }
   };
 

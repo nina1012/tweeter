@@ -7,14 +7,14 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
 
 ## Features
 
-- User authentication and authorization
-- Create, read, update, and delete tweets
-- Like and retweet tweets
-- Bookmark tweets for later viewing
-- Upload and display images in tweets
-- Follow and unfollow users
-- View user profiles and their tweets
-- Real-time updates with Supabase
+- [x] User authentication and authorization
+- [ ] Create, read, update, and delete tweets
+- [ ] Like and retweet tweets
+- [x] Bookmark tweets for later viewing
+- [x] Upload and display images in tweets
+- [ ] Follow and unfollow users
+- [ ] View user profiles and their tweets
+- [x] Real-time updates with Supabase
 
 ## User Stories
 
@@ -42,7 +42,7 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
 - **State Management:** React Query, Zustand
 - **Form Management:** React Hook Form
 - **Validation:** Zod
-- **Testing:**
+- **Testing:** ...
 
 ## Installation and Setup
 

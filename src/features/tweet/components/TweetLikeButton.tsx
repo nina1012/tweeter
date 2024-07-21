@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { Heart } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { useUser } from '@/features/auth/api/get-current-user';
@@ -14,14 +13,7 @@ export type TweetLikeButtonProps = {
 export const TweetLikeButton = ({ tweet }: TweetLikeButtonProps) => {
   const { user } = useUser();
 
-  const [isLiked, setIsLiked] = useState<boolean>(false);
-
-  useEffect(() => {
-    // Ensure tweet.likes and user?.id are available at the initial render
-    if (tweet.likes && user?.id) {
-      setIsLiked(tweet.likes.includes(user.id));
-    }
-  }, [tweet.likes, user?.id]);
+  const isLiked = user?.id ? tweet.likes.includes(user?.id) : false;
 
   const { likeTweet } = useLikeTweet();
   const { unlikeTweet } = useUnlikeTweet();
@@ -33,13 +25,11 @@ export const TweetLikeButton = ({ tweet }: TweetLikeButtonProps) => {
         tweetID: tweet.tweet_id as string,
         userID: user?.id as string,
       });
-      setIsLiked(false);
     } else {
       likeTweet({
         tweetID: tweet.tweet_id as string,
         userID: user?.id as string,
       });
-      setIsLiked(true);
     }
   };
 
