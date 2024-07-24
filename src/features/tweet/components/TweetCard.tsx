@@ -1,14 +1,14 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Repeat2 } from 'lucide-react';
 import { memo } from 'react';
 
 import { useUser } from '@/features/auth/api/get-current-user';
-import { TweetReply } from '@/features/tweet/components/reply/components/TweetReply';
 import { useGetUserData } from '@/features/user/api/get-user-data';
 import { formatNumber } from '@/utils/formatNumbers';
 
 import { Tweet } from '../types';
 
+import { TweetReply } from './reply/components/TweetReply';
 import { TweetReplyInput } from './reply/components/TweetReplyInput';
 import { TweetButtons } from './TweetButtons';
 import { TweetHeader } from './TweetHeader';
@@ -104,6 +104,16 @@ export const TweetCard = memo(function TweetView({ tweet }: TweetCardProps) {
       {/* tweet button */}
       <TweetButtons tweet={tweet} />
       <TweetReplyInput tweet={tweet} />
+
+      {tweet?.replies?.length > 0 && (
+        <div className="mt-4 flex flex-col gap-6 border-t-[.1rem] border-t-gray-600 px-6">
+          <AnimatePresence>
+            {tweet.replies.map((reply, index) => (
+              <div key={`${index}-${reply}-reply`}>this is a reply</div>
+            ))}
+          </AnimatePresence>
+        </div>
+      )}
     </motion.article>
   );
 });

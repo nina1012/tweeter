@@ -8,7 +8,7 @@ import { formatDate } from '@/utils/formatNumbers';
 
 import { Tweet } from '../types';
 
-import { TweetOptions } from './TweetOptions';
+import { TweetOptions } from './action-buttons/components/TweetOptions';
 
 type TweetHeaderProps = {
   tweet: Tweet;

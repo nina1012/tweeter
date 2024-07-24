@@ -8,8 +8,8 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
 ## Features
 
 - [x] User authentication and authorization
-- [ ] Create, read, update, and delete tweets
-- [ ] Like and retweet tweets
+- [x] Create, read, update, and delete tweets
+- [x] Like and retweet tweets
 - [x] Bookmark tweets for later viewing
 - [x] Upload and display images in tweets
 - [ ] Follow and unfollow users
@@ -18,14 +18,14 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
 
 ## User Stories
 
-- I can see my profile or others' profile
+- [x] I can see my profile or others' profile
 - When I am on a profile, I can see Tweets and Retweets. I can also filter by Tweets, Tweets and replies, Media and Likes
 - When I am on a profile, I can see followers and following
 - When I am on a profile, I can see follow or unfollow the user
-- I can navigate between Home, Explore and Bookmarks
+- [x] I can navigate between Home, Explore and Bookmarks
 - I can navigate to My Profile, Group Chat (optional), Setting/Authentication App
-- When I am on Home, I can post a new Tweet
-- When I post a new Tweet, I can choose to upload an image and set the Tweet to be public or only-follower
+- [x] When I am on Home, I can post a new Tweet
+- [x] When I post a new Tweet, I can choose to upload an image
 - When I am on Home, I can see Tweets of people who I follow
 - I can Comment, Retweet, Like or Save a Tweet
 - I can Comment with image and I can like a comment

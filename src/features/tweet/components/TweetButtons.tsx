@@ -4,9 +4,9 @@ import { Button } from '@/components/ui/button';
 
 import { Tweet } from '../types';
 
-import { TweetBookmarkButton } from './TweetBookmarkButton';
-import { TweetLikeButton } from './TweetLikeButton';
-import { TweetRetweetButton } from './TweetRetweetButton';
+import { TweetBookmarkButton } from './action-buttons/components/TweetBookmarkButton';
+import { TweetLikeButton } from './action-buttons/components/TweetLikeButton';
+import { TweetRetweetButton } from './action-buttons/components/TweetRetweetButton';
 
 export type TweetButtonsProps = {
   tweet: Tweet;
