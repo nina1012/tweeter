@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { TweetList } from '@/features/tweet/components/TweetList';
 import { useUserBookmarks } from '@/features/user/api/get-bookmarks';
 
-import { FilterAndTweetsContainerSkeleton } from '../skeleton/tweet/FilterAndTweetsContainerSkeleton';
+import { TweetListSkeleton } from '../skeleton/tweet/TweetListSkeleton';
 
 import { TweetsFilter } from './TweetsFilter';
 
@@ -32,11 +32,7 @@ export const FilterAndTweetsContainer = ({
         isBookmark={isBookmark}
         filter={filter}
       />
-      {!isLoading ? (
-        <FilterAndTweetsContainerSkeleton />
-      ) : (
-        <TweetList tweets={bookmarks} />
-      )}
+      {isLoading ? <TweetListSkeleton /> : <TweetList tweets={bookmarks} />}
     </div>
   );
 };

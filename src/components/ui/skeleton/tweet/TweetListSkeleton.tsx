@@ -1,6 +1,6 @@
 import { Skeleton } from '../skeleton';
 
-export const FilterAndTweetsContainerSkeleton = () => {
+export const TweetListSkeleton = () => {
   return (
     <div className="rounded-md">
       <div className="flex flex-col gap-8 *:bg-white">
