@@ -28,7 +28,7 @@ export const fetchUserBookmarks = async (
 
   // Apply filter
   if (filter === 'tweets') {
-    query = query.eq('is_reply', false).eq('is_retweet', false);
+    query = query.eq('is_retweet', true);
   } else if (filter === 'replies') {
     query = query.eq('is_reply', true);
   } else if (filter === 'media') {

@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { TweetList } from '@/features/tweet/components/TweetList';
 import { useUserBookmarks } from '@/features/user/api/get-bookmarks';
 
+import { FilterAndTweetsContainerSkeleton } from '../skeleton/tweet/FilterAndTweetsContainerSkeleton';
+
 import { TweetsFilter } from './TweetsFilter';
 
 export type FilterAndTweetsContainerProps = {
@@ -19,10 +21,6 @@ export const FilterAndTweetsContainer = ({
 
   const { bookmarks, isLoading, error } = useUserBookmarks(filter);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   if (error) {
     return <div>Error: {error.message}</div>;
   }
@@ -34,7 +32,11 @@ export const FilterAndTweetsContainer = ({
         isBookmark={isBookmark}
         filter={filter}
       />
-      <TweetList tweets={bookmarks} />
+      {!isLoading ? (
+        <FilterAndTweetsContainerSkeleton />
+      ) : (
+        <TweetList tweets={bookmarks} />
+      )}
     </div>
   );
 };
