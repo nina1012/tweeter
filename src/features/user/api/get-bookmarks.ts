@@ -4,7 +4,10 @@ import { useUser } from '@/features/auth/api/get-current-user';
 import { Tweet } from '@/features/tweet/types';
 import { supabase } from '@/lib/supabase';
 
-export const fetchUserBookmarks = async (userID: string): Promise<Tweet[]> => {
+export const fetchUserBookmarks = async (
+  userID: string,
+  filter: string,
+): Promise<Tweet[]> => {
   const { data, error } = await supabase
     .from('users')
     .select('bookmarks')
@@ -20,28 +23,39 @@ export const fetchUserBookmarks = async (userID: string): Promise<Tweet[]> => {
   }
 
   const bookmarkIDs = data.bookmarks as string[];
-  const { data: tweets, error: tweetError } = await supabase
-    .from('tweets')
-    .select('*')
-    .in('tweet_id', bookmarkIDs);
+
+  let query = supabase.from('tweets').select('*').in('tweet_id', bookmarkIDs);
+
+  // Apply filter
+  if (filter === 'tweets') {
+    query = query.eq('is_reply', false).eq('is_retweet', false);
+  } else if (filter === 'replies') {
+    query = query.eq('is_reply', true);
+  } else if (filter === 'media') {
+    query = query.not('image', 'is', null);
+  } else if (filter === 'likes') {
+    query = query.contains('likes', [userID]);
+  }
+
+  const { data: tweets, error: tweetError } = await query;
 
   if (tweetError) {
     throw new Error(tweetError.message);
   }
-  console.log(bookmarkIDs, tweets);
 
   return tweets || [];
 };
 
-export const useUserBookmarks = () => {
+export const useUserBookmarks = (filter: string) => {
   const { user } = useUser();
   const {
     data: bookmarks,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['userBookmarks', user?.id],
-    queryFn: () => fetchUserBookmarks(user?.id as string),
+    queryKey: ['userBookmarks', user?.id, filter],
+    queryFn: () => fetchUserBookmarks(user?.id as string, filter),
+    enabled: !!user?.id,
   });
 
   return { bookmarks, isLoading, error };
