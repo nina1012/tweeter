@@ -53,6 +53,13 @@ export const createRouter = () =>
           },
         },
         {
+          path: 'bookmark',
+          lazy: async () => {
+            const { BookmarkRoute } = await import('./app/bookmark');
+            return { Component: BookmarkRoute };
+          },
+        },
+        {
           path: 'settings',
           lazy: async () => {
             const { SettingsRoute } = await import('./app/settings');

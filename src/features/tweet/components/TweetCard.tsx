@@ -8,10 +8,11 @@ import { formatNumber } from '@/utils/formatNumbers';
 
 import { Tweet } from '../types';
 
-import { TweetReply } from './reply/components/TweetReply';
-import { TweetReplyInput } from './reply/components/TweetReplyInput';
+// import { TweetReplyInput } from './reply/components/TweetReplyInput';
 import { TweetButtons } from './TweetButtons';
 import { TweetHeader } from './TweetHeader';
+import { TweetReply } from './TweetReply';
+import { TweetReplyInput } from './TweetReplyInput';
 
 export type TweetCardProps = {
   tweet: Tweet;
