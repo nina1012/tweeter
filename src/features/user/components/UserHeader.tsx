@@ -1,5 +1,5 @@
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
-import { Edit } from 'lucide-react';
+import { Edit, UserPlus } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton/skeleton';
@@ -76,10 +76,16 @@ export const UserHeader = ({ userID, handleEdit }: UserHeaderProps) => {
           {bio ? <p>{bio}</p> : <p>User has not added a bio yet</p>}
         </div>
       </div>
-      {user?.id === userData.user_id && (
+      {user?.id === userData.user_id ? (
         <div className="mx-auto mb-4 self-center md:m-0 md:-mt-20">
           <Button onClick={handleEdit}>
             <Edit className="mr-2 size-4" /> Edit profile
+          </Button>
+        </div>
+      ) : (
+        <div className="mx-auto mb-4 self-center md:m-0 md:-mt-20">
+          <Button className="px-6">
+            <UserPlus className="mr-2 size-4" /> Follow
           </Button>
         </div>
       )}
