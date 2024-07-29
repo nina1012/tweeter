@@ -1,4 +1,3 @@
-// import { useRef } from 'react';
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 import { Textarea } from '@/components/ui/form/textarea';

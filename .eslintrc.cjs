@@ -19,6 +19,10 @@ module.exports = {
         react: { version: 'detect' },
         'import/resolver': {
           typescript: {},
+          alias: {
+            map: [['@', './src']],
+            extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+          },
         },
       },
       env: {
