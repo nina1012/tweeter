@@ -1,6 +1,6 @@
 import { Tweet } from '../types';
 
 export const TweetReplyInput = ({ tweet }: { tweet: Tweet }) => {
-  console.log(tweet);
+  if (!tweet) return;
   return <div>TweetReplyInput</div>;
 };
