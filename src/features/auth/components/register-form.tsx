@@ -52,12 +52,14 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
                   placeholder="First Name"
                   error={formState.errors['firstName']}
                   registration={register('firstName')}
+                  data-testid="first name"
                 />
                 <Input
                   type="text"
                   placeholder="Last Name"
                   error={formState.errors['lastName']}
                   registration={register('lastName')}
+                  data-testid="last name"
                 />
                 <Input
                   type="text"
@@ -65,6 +67,7 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
                   error={formState.errors['username']}
                   registration={register('username')}
                   autoComplete="username"
+                  data-testid="username"
                 />
               </div>
               <Input
@@ -73,6 +76,7 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
                 error={formState.errors['email']}
                 registration={register('email')}
                 autoComplete="email"
+                data-testid="email"
               />
               <Input
                 type="password"
@@ -80,12 +84,14 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
                 error={formState.errors['password']}
                 registration={register('password')}
                 autoComplete="password"
+                data-testid="password"
               />
               <Input
                 type="password"
                 placeholder="Confirm password"
                 error={formState.errors['confirm']}
                 registration={register('confirm')}
+                data-testid="confirm"
               />
               <div>
                 <Button type="submit" className="w-full">

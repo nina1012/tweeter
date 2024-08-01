@@ -34,6 +34,7 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
   return (
     <div>
       <Form
+        data-testid="form"
         onSubmit={(values) => {
           login(values);
         }}
@@ -51,6 +52,7 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
                 error={formState.errors['email']}
                 registration={register('email')}
                 defaultValue={'test@user.com'}
+                data-testid="email"
               />
               <Input
                 type="password"
@@ -58,8 +60,8 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
                 error={formState.errors['password']}
                 registration={register('password')}
                 defaultValue={'password'}
+                data-testid="password"
               />
-
               <div>
                 <Button type="submit" className="w-full">
                   Log in
