@@ -71,8 +71,6 @@ export function authenticate({
     const encodedToken = encode(sanitizedUser);
     return { user: sanitizedUser, jwt: encodedToken };
   }
-  console.log(user);
-
   const error = new Error('Invalid username or password');
   throw error;
 }

@@ -16,13 +16,14 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
   const { addNotification } = useNotifications();
   const { login } = useLogin({
     onSuccess: () => {
-      console.log('onSuccess callback called');
+      onSuccess();
+      console.log('onSuccess callback called', onSuccess);
+
       addNotification({
         title: 'Successfully logged in',
         type: 'success',
         message: 'Welcome back to Tweeter 😊',
       });
-      onSuccess();
     },
     onError: (error) => {
       addNotification({
