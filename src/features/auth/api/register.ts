@@ -5,6 +5,8 @@ import { useMutation } from '@tanstack/react-query';
 import { queryClient } from '@/lib/react-query';
 import { supabase } from '@/lib/supabase';
 
+import { mockRegisterFn } from './mocks/register.mock';
+
 type UseRegisterOptions = {
   onSuccess?: (user: AuthResponse['data']) => void;
   onError?: (error: AuthError['message']) => void;
@@ -60,8 +62,11 @@ export const useRegister = ({
   onSuccess,
   onError,
 }: UseRegisterOptions = {}) => {
+  const isTestEnvironment = import.meta.env.VITE_TEST_ENV === 'true';
+
+  const mutationFn = isTestEnvironment ? mockRegisterFn : registerFn;
   const { mutate: registering, isPending } = useMutation({
-    mutationFn: registerFn,
+    mutationFn,
     mutationKey: ['auth-user'],
     onSuccess: (data) => {
       queryClient.setQueryData(['auth-user'], {

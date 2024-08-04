@@ -22,6 +22,7 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
         message: 'Welcome to Tweeter! 😊',
       });
       onSuccess();
+      console.log('onSuccess for registering is called');
     },
     onError: (error) => {
       addNotification({

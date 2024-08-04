@@ -30,7 +30,7 @@ export const loginFn = async ({
 };
 
 export const useLogin = ({ onSuccess, onError }: UseLoginOptions = {}) => {
-  const isTestEnvironment = true; // should add test env that should toggle this variable
+  const isTestEnvironment = import.meta.env.VITE_TEST_ENV === 'true';
   const mutationFn = isTestEnvironment ? mockLoginFn : loginFn;
 
   const { mutate: login, isPending } = useMutation({
