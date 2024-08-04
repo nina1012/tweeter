@@ -9,7 +9,7 @@ beforeEach(() => {
   vi.resetAllMocks();
 });
 
-test('should login new user and call onSuccess cb which should navigate the user to the app', async () => {
+test('should login new user and display notification with welcome text', async () => {
   const newUser = { email: 'demo@user.com', password: 'password' };
   const onSuccess = vi.fn();
   appRender(
@@ -21,11 +21,16 @@ test('should login new user and call onSuccess cb which should navigate the user
   const emailInput = screen.getByTestId(/email/i);
   const passwordInput = screen.getByTestId(/password/i);
   const loginButton = screen.getByRole('button', { name: /log in/i });
+
   await userEvent.type(emailInput, newUser.email);
   await userEvent.type(passwordInput, newUser.password);
+
   await userEvent.click(loginButton);
 
-  await waitFor(() => {
-    expect(onSuccess).toHaveBeenCalled();
+  // eslint-disable-next-line testing-library/await-async-utils
+  waitFor(() => {
+    expect(
+      screen.getByRole('alert', { name: /welcome back/i }),
+    ).toBeInTheDocument();
   });
 });

@@ -1,11 +1,11 @@
 # Tweeter - A Twitter Clone
 
-## Project Description
+## Project Description 📖
 
 Tweeter is a Twitter clone built to replicate the core functionalities of Twitter.
 The design of this app is from [devchallenges.io]('https://legacy.devchallenges.io/challenges/rleoQc34THclWx1cFFKH').
 
-## Features
+## Features ✨
 
 - [x] User authentication and authorization
 - [x] Create, read, update, and delete tweets
@@ -35,7 +35,7 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
 - [x] When I am on Bookmarks, I can see the Saved Tweet
 - (optional): I can search for a group
 
-## Tech Stack
+## Tech Stack 🛠️
 
 - **Frontend:** React, TypeScript, Vite.js, Tailwind CSS, ShadCN UI
 - **Backend:** Supabase (PostgreSQL)
@@ -44,7 +44,7 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
 - **Validation:** Zod
 - **Testing:** ...
 
-## Installation and Setup
+## Installation and Setup 🛠️
 
 1. **Clone the repository:**
 
