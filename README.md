@@ -42,7 +42,7 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
 - **State Management:** React Query, Zustand
 - **Form Management:** React Hook Form
 - **Validation:** Zod
-- **Testing:** ...
+- **Testing:** Vitest
 
 ## Installation and Setup 🛠️
 
