@@ -22,6 +22,7 @@ export const loginFn = async ({
     email: email,
     password: password,
   });
+  console.log('loginFN gets called in production');
 
   if (error) {
     throw error;
@@ -30,8 +31,7 @@ export const loginFn = async ({
 };
 
 export const useLogin = ({ onSuccess, onError }: UseLoginOptions = {}) => {
-  const isTestEnvironment = import.meta.env.VITE_TEST_ENV === 'true';
-  const mutationFn = isTestEnvironment ? mockLoginFn : loginFn;
+  const mutationFn = import.meta.env.PROD ? loginFn : mockLoginFn;
 
   const { mutate: login, isPending } = useMutation({
     mutationFn,

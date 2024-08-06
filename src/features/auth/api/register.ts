@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AuthResponse, AuthError } from '@supabase/supabase-js';
 import { useMutation } from '@tanstack/react-query';
 
@@ -62,9 +61,7 @@ export const useRegister = ({
   onSuccess,
   onError,
 }: UseRegisterOptions = {}) => {
-  const isTestEnvironment = import.meta.env.VITE_TEST_ENV === 'true';
-
-  const mutationFn = isTestEnvironment ? mockRegisterFn : registerFn;
+  const mutationFn = import.meta.env.PROD ? registerFn : mockRegisterFn;
   const { mutate: registering, isPending } = useMutation({
     mutationFn,
     mutationKey: ['auth-user'],
