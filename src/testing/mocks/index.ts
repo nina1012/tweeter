@@ -3,7 +3,7 @@ export const enableMocking = async () => {
     ![typeof window, typeof document].includes('undefined');
   if (isBrowser() && import.meta.env.DEV) {
     const { worker } = await import('./browser');
-    return worker.start();
+    return import.meta.env.PROD ? worker.stop() : worker.start();
   }
   // commenting setting server because of the error while trying to build the app!!!
   // else {
