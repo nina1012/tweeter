@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { queryClient } from '@/lib/react-query';
 import { supabase } from '@/lib/supabase';
 
-import { mockLoginFn } from './mocks/login.mock';
+// import { mockLoginFn } from './mocks/login.mock';
 
 type UseLoginOptions = {
   onSuccess?: (data: AuthResponse['data']) => void;
@@ -31,10 +31,10 @@ export const loginFn = async ({
 };
 
 export const useLogin = ({ onSuccess, onError }: UseLoginOptions = {}) => {
-  const mutationFn = import.meta.env.PROD ? loginFn : mockLoginFn;
+  // const mutationFn = import.meta.env.PROD ? loginFn : mockLoginFn;
 
   const { mutate: login, isPending } = useMutation({
-    mutationFn,
+    mutationFn: loginFn,
     mutationKey: ['auth-user'],
     onSuccess: (data) => {
       queryClient.setQueryData(['auth-user'], { ...data });
