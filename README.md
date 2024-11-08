@@ -10,7 +10,7 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
 
 ## Important Notice ⚠️
 
-**Please Note**: This project is a **work in progress**, and certain actions may currently be non-functional. Some features require integration with a production database, which is not fully set up in this development environment.
+**Please Note**: Some actions and features in this project are **not functional in production** because they rely on specific data or configurations that have yet to be pushed to the production database.
 
 ## Features ✨
 
