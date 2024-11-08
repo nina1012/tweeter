@@ -22,7 +22,6 @@ export const loginFn = async ({
     email: email,
     password: password,
   });
-  console.log('loginFN gets called in production');
 
   if (error) {
     throw error;

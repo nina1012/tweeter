@@ -8,6 +8,10 @@
 Tweeter is a Twitter clone built to replicate the core functionalities of Twitter.
 The design of this app is from [devchallenges.io]('https://legacy.devchallenges.io/challenges/rleoQc34THclWx1cFFKH').
 
+## Important Notice ⚠️
+
+**Please Note**: This project is a **work in progress**, and certain actions may currently be non-functional. Some features require integration with a production database, which is not fully set up in this development environment.
+
 ## Features ✨
 
 - [x] User authentication and authorization
@@ -74,3 +78,12 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
    ```bash
    npm run dev
    ```
+
+## Usage 👥
+
+To explore the app without registering, use the following demo account credentials:
+
+- Email: demo@user.com
+- Password: password
+
+Simply log in with these credentials to start using the application. 🚀

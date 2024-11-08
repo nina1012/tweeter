@@ -17,7 +17,6 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
   const { login } = useLogin({
     onSuccess: () => {
       onSuccess();
-      console.log('onSuccess callback called', onSuccess);
 
       addNotification({
         title: 'Successfully logged in',
@@ -38,7 +37,6 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
       <Form
         data-testid="form"
         onSubmit={(values) => {
-          console.log('Form submitted with values:', values);
           login(values);
         }}
         schema={loginInputSchema}
