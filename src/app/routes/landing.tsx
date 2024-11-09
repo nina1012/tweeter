@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button } from '@/components/ui/button';
 
-export const HomeRoute: React.FC = () => {
+export const LandingRoute: React.FC = () => {
   return (
     <div className="mx-auto max-w-[600px] bg-white p-4 lg:mx-0 lg:w-full lg:max-w-full lg:px-10">
       <div className="relative m-0 box-border flex min-h-0 min-w-0 flex-1 shrink-0 list-none flex-col-reverse items-stretch border-0 border-black p-0 *:justify-center lg:flex-row-reverse lg:*:w-1/2">
@@ -67,7 +67,7 @@ export const HomeRoute: React.FC = () => {
             <img
               alt="logo"
               src="/images/tweeter-small.svg"
-              className="m-auto size-full max-w-96"
+              className="m-auto size-full"
             />
           </div>
         </div>

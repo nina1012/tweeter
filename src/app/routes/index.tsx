@@ -11,8 +11,8 @@ export const createRouter = () =>
     {
       path: '/',
       lazy: async () => {
-        const { HomeRoute } = await import('./home');
-        return { Component: HomeRoute };
+        const { LandingRoute } = await import('./landing');
+        return { Component: LandingRoute };
       },
     },
     {

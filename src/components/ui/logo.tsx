@@ -8,7 +8,7 @@ export const Logo = () => {
     <Link to="/app/home">
       <img
         src={
-          screenSize[0] < 768
+          screenSize[0] < 1024
             ? '/images/tweeter-small.svg'
             : '/images/tweeter.svg'
         }

@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { Button } from '@/components/ui/button';
+import DevBadge from '@/components/ui/common/dev-badge';
 import { Notifications } from '@/components/ui/notifications/notifications';
 import { Spinner } from '@/components/ui/spinner';
 import { queryClient } from '@/lib/react-query';
@@ -38,6 +39,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         <QueryClientProvider client={queryClient}>
           {import.meta.env.DEV && <ReactQueryDevtools />}
           <Notifications />
+          <DevBadge />
           {children}
         </QueryClientProvider>
       </ErrorBoundary>

@@ -44,9 +44,9 @@ export const UserDropdown = () => {
     <DropdownMenu>
       <DropdownMenuTrigger
         asChild
-        className="min-w-40 cursor-pointer rounded-md p-1 py-2 hover:bg-muted"
+        className="cursor-pointer rounded-md p-1 py-2 hover:bg-muted md:min-w-40"
       >
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-end gap-2 md:justify-center">
           {!user ? (
             // skeleton for avatar and username
             <div className="flex w-full items-center justify-between">
@@ -64,7 +64,7 @@ export const UserDropdown = () => {
                   />
                 </Avatar>
               </div>
-              {userData?.username}
+              <div className="hidden md:inline-block">{userData?.username}</div>
             </>
           )}
           <ChevronDown size="16" />
