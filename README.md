@@ -84,6 +84,6 @@ The design of this app is from [devchallenges.io]('https://legacy.devchallenges.
 To explore the app without registering, use the following demo account credentials:
 
 - Email: demo@user.com
-- Password: password
+- Password: password123
 
 Simply log in with these credentials to start using the application. 🚀

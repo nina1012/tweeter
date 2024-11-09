@@ -67,7 +67,7 @@ export const UserDropdown = () => {
               <div className="hidden md:inline-block">{userData?.username}</div>
             </>
           )}
-          <ChevronDown size="16" />
+          <ChevronDown className="size-3 md:size-4" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="z-[1000] w-56 opacity-100">
