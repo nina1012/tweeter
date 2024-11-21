@@ -8,11 +8,11 @@ import { formatNumber } from '@/utils/formatNumbers';
 
 import { Tweet } from '../types';
 
-// import { TweetReplyInput } from './reply/components/TweetReplyInput';
 import { TweetButtons } from './TweetButtons';
 import { TweetHeader } from './TweetHeader';
 import { TweetReply } from './TweetReply';
 import { TweetReplyInput } from './TweetReplyInput';
+import { TweetRetweet } from './TweetRetweet';
 
 export type TweetCardProps = {
   tweet: Tweet;
@@ -81,12 +81,12 @@ export const TweetCard = memo(function TweetView({ tweet }: TweetCardProps) {
         )}
       </div>
       {/* retweet */}
-      {/* {is_retweet && (
+      {is_retweet && (
         <TweetRetweet
           originalAuthorID={user?.id as string}
           originalTweetID={original_tweet_id as string}
         />
-      )} */}
+      )}
       {/* tweet statistics */}
       <div className="mb-1 flex justify-end gap-6 border-b-[.5px] border-b-gray-200 pb-3">
         <p className="text-xs font-normal tracking-tight text-gray-400">
@@ -99,7 +99,7 @@ export const TweetCard = memo(function TweetView({ tweet }: TweetCardProps) {
           {formatNumber(retweets.length)} retweets
         </p>
         <p className="text-xs font-normal tracking-tight text-gray-400">
-          {formatNumber(bookmarks.length)} saved
+          {bookmarks && formatNumber(bookmarks.length)} saved
         </p>
       </div>
       {/* tweet button */}

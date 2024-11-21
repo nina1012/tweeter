@@ -13,6 +13,7 @@ export type TweetButtonsProps = {
 };
 export const TweetButtons = ({ tweet }: TweetButtonsProps) => {
   //  for now, only UI is done, I will implement actions
+  if (!tweet) return;
   return (
     <div className="mb-3 flex justify-between gap-3 border-b-[.5px] border-b-gray-200 pb-1 text-gray-700">
       <TweetLikeButton tweet={tweet} />

@@ -19,7 +19,8 @@ export const TweetBookmarkButton = ({ tweet }: TweetBookmarkButtonProps) => {
   const { addBookmark } = useAddBookmark();
   const { removeBookmark } = useRemoveBookmark();
 
-  const isBookmarked = user?.id ? tweet.bookmarks.includes(user?.id) : false;
+  const isBookmarked =
+    user?.id && tweet.bookmarks ? tweet.bookmarks.includes(user?.id) : false;
 
   const handleClick = () => {
     if (!tweet || !user) return;
